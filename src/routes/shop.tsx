@@ -1,6 +1,9 @@
+import type { RouteObject } from "react-router-dom"
+
+
 import { lazy, Suspense } from "react"
 import { Fallback } from "../components/Fallback"
-import { Outlet, RouteObject } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import { shopRouteURL } from "../utilities/routeUrl"
 
 const Product = lazy(() => import('../pages/shop/Product'))

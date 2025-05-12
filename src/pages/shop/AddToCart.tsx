@@ -1,4 +1,6 @@
-import { ActionFunctionArgs, Form } from "react-router-dom"
+import type { ActionFunctionArgs } from 'react-router-dom';
+
+import { Form } from "react-router-dom"
 import { BackendUrl } from "../../utilities/backendUrl"
 
 type Props = {
@@ -16,12 +18,12 @@ export default function AddToCart({ prodId, price }: Props) {
     )
 }
 
-export async function action(arg: ActionFunctionArgs){
+export async function action(arg: ActionFunctionArgs) {
     const formData = Object.fromEntries((await arg.request.formData()).entries())
-    
+
     fetch(BackendUrl.cart, {
-        method:'post',
-        headers:{
+        method: 'post',
+        headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify(formData)

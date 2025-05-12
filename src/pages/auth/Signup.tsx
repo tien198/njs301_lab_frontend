@@ -1,6 +1,9 @@
-import { ActionFunctionArgs, Form, redirect } from 'react-router-dom';
+import type { ActionFunctionArgs } from 'react-router-dom';
+
+import { Form } from 'react-router-dom';
 import styles from './authen.module.css';
 import { BackendUrl } from '../../utilities/backendUrl';
+import authenAction from './authenAction';
 
 export default function Signup() {
     return (
@@ -17,20 +20,5 @@ export default function Signup() {
 }
 
 export async function action(args: ActionFunctionArgs) {
-    const formData = await args.request.formData();
-    const data = Object.fromEntries(formData);
-    const res = await fetch(BackendUrl.signUp, {
-        method: args.request.method,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(data),
-    });
-
-    if (!res.ok) {
-        throw new Error('Network response was not ok');
-    }
-    
-    return redirect('/')
+    return await authenAction(args, BackendUrl.signUp);
 }

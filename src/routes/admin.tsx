@@ -1,5 +1,7 @@
+import type { RouteObject } from "react-router-dom";
+
 import { lazy, Suspense } from "react";
-import { Outlet, type RouteObject } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Fallback } from "../components/Fallback";
 import { shopRouteURL } from "../utilities/routeUrl";
 

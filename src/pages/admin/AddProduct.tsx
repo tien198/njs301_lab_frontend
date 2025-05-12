@@ -1,6 +1,8 @@
+import type { ActionFunctionArgs } from "react-router-dom"
+
 import Product from "../../models/Product"
 import { BackendUrl } from "../../utilities/backendUrl"
-import { ActionFunctionArgs, Form } from "react-router-dom"
+import { Form } from "react-router-dom"
 
 import './forms.css'
 
@@ -28,7 +30,7 @@ export default function AddProduct({ isEditing, product }: Props) {
           <textarea name="description" id="description" rows={5}>{isEditing ? product?.description : ''}</textarea>
         </div>
 
-        {isEditing && <input type="hidden" name="id" value={product?._id} />}
+        {isEditing && <input type="hidden" name="id" value={product?.id} />}
         <button className="btn" type="submit">{isEditing ? 'Update product' : 'Add product'}</button>
       </Form>
     </main>
