@@ -1,0 +1,54 @@
+import './product.css'
+import { Await, useLoaderData } from 'react-router-dom'
+import Product from '../../models/Product'
+import { BackendUrl } from '../../utilities/backendUrl'
+import ProductComponent from '../../components/ProductComponent'
+import { Suspense } from 'react'
+import { Fallback } from '../../components/Fallback'
+
+export default function ProductPage() {
+  const { prodsDefer } = useLoaderData()
+  return (
+    <main>
+      <Suspense fallback={<Fallback />}>
+        <Await resolve={prodsDefer}>{(products: Product[]) =>
+
+          (products && products.length > 0) ?
+            <div className="grid">
+              {
+                products.map(product =>
+                  <ProductComponent product={product} key={product.title} />
+                )
+              }
+            </div>
+            : <h1>No Products Found!</h1>
+
+        }
+        </Await>
+      </Suspense>
+    </main>
+  )
+}
+
+// export async function productLoader() {
+//   try {
+//     const res = await fetch(BackendUrl.baseUrl)
+//     const prods = await res.json()
+//     return prods
+//   } catch (error) {
+//     console.error(error)
+//     return []
+//   }
+// }
+
+
+export function productLoader() {
+  const prodsDefer = fetch(BackendUrl.baseUrl).then(res => res.json())
+    .catch(error => {
+      console.error(error)
+      return Promise.resolve([])
+    })
+  return {
+    prodsDefer
+  }
+}
