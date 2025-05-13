@@ -1,12 +1,9 @@
+import type { IRes } from "./response"
 
-export interface IErrorRes {
-    status: number
-    message: string
+export interface IErrorRes extends IRes{
     errors?: object
 }
 
-export interface IErrorResGen<T extends object> {
-    status: number
-    message: string
+export interface IErrorResGen<T extends object> extends IRes {
     errors?: T
 }

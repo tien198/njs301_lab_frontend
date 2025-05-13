@@ -1,6 +1,10 @@
+import { useStore } from "zustand"
+
+import informModalStyle from './InformModal.module.css'
+
 import Button from "../layouts/Button"
 import Modal from "./Modal"
-import useModalStore from "./store"
+import modalStore from "./store"
 
 type props = {
     truthyFnc: () => void
@@ -8,26 +12,27 @@ type props = {
 }
 
 export default function ErrorModal({ truthyFnc, falsyFnc }: props) {
-    const status = useModalStore(state => state.error.status)
-    const message = useModalStore(state => state.error.message)
-    const error = useModalStore(state => state.error.errors)
+    const status = useStore(modalStore, state => state.resonse.status)
+    const message = useStore(modalStore, state => state.resonse.message)
+    const errors = useStore(modalStore, state => state.resonse.errors)
+
     let errorEntries: [string, string][] = []
-    if (error)
-        errorEntries = Object.entries(error)
+    if (errors)
+        errorEntries = Object.entries(errors)
 
 
 
     return (
         <Modal>
-            <div className="w-full p-10 shadow flex flex-col items-center justify-center gap-7">
-                <span className="text-lg font-bold">{status}</span>
+            <div className={informModalStyle["container"]}>
+                <span className={informModalStyle["status"]}>{status}</span>
                 <span>{message}</span>
-                <span className="flex flex-col gap-4">{
+                <span className={informModalStyle['error-list']}>{
                     errorEntries.map(i =>
-                        <span>{i[1]}</span>
+                        <span key={i[0]} >{i[1]}</span>
                     )
                 }</span>
-                <div className="flex justify-between gap-10">
+                <div className={informModalStyle["actions"]}>
                     <span><Button onClick={truthyFnc}>Ok</Button></span>
                     <span><Button isBgWhite onClick={falsyFnc}>Cancel</Button></span>
                 </div>

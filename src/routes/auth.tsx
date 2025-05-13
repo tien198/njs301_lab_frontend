@@ -7,6 +7,7 @@ import { Fallback } from '../components/Fallback'
 
 const Login = lazy(() => import('../pages/auth/Login'))
 const Signup = lazy(() => import('../pages/auth/Signup'))
+const ResetPassword = lazy(() => import('../pages/auth/ResetPassword'))
 
 const authRoute: RouteObject = {
     path: shopRouteURL.authen,
@@ -25,6 +26,13 @@ const authRoute: RouteObject = {
                 <Signup />
             </Suspense>,
             action: args => import('../pages/auth/Signup.action').then(module => module.action(args))
+        },
+        {
+            path: shopRouteURL.resetPassword,
+            element: <Suspense fallback={<Fallback />}>
+                <ResetPassword />
+            </Suspense>,
+            action: args => import('../pages/auth/ResetPassword.action').then(module => module.action(args))
         },
         {
             path: shopRouteURL.testCookie,

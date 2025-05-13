@@ -46,6 +46,9 @@
 }
 
 
+.hidden {
+  display: none;
+}
 
 .fading-hidden {
   animation: fade-hidden 300ms ease-out forwards;
@@ -55,6 +58,7 @@
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     display: none;
@@ -62,6 +66,28 @@
 }
 
 
+
+.close-icon {
+  position: fixed;
+  top: 1rem;               /* top-4 = 1rem */
+  right: 2.5rem;           /* right-10 = 2.5rem */
+  font-size: 1.875rem;     /* text-3xl = 1.875rem */
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+
+
+
+/* Responsive for large screens */
+@media (min-width: 1024px) {
+  .close-icon {
+    top: 1.75rem;           /* lg:top-7 = 1.75rem */
+    font-size: 2.25rem;     /* lg:text-4xl = 2.25rem */
+  }
+}
 
 
 

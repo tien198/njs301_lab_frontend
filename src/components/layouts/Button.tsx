@@ -1,22 +1,27 @@
 import type { MouseEventHandler, ReactNode } from 'react'
 
+import btnStyle from './Button.module.css'
+
 type props = {
     value?: string
     children?: ReactNode
     className?: string
     isBgWhite?: boolean
+    type?: "submit" | "reset" | "button" | undefined
     onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-export default function Button({ value, children, className, isBgWhite = false, onClick }: props) {
+export default function Button({ value, children, type, className, isBgWhite = false, onClick }: props) {
+    const bg = isBgWhite
+        ? btnStyle['btn-white']
+        : btnStyle['btn-primary']
 
     return (
         <button
+            type={type}
             onClick={onClick}
-            className={className ?? 'border border-teal-700 py-2 px-20 rounded mt-4 '
-                + (isBgWhite
-                    ? 'bg-white text-teal-700 hover:bg-teal-800 hover:text-white'
-                    : 'bg-teal-700 text-white hover:bg-teal-800')}>
+            className={className ?? btnStyle['btn'] + ' ' + bg}
+        >
             {value ?? children ?? 'send'}
         </button>
     )

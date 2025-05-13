@@ -34,6 +34,24 @@
     cursor: pointer;
 }
 
+.button-bg-white {
+    padding: 1rem 3rem;
+    font-size: 16px;
+    background-color: white;
+    color: #00695c;
+    border: 1px #00695c solid;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .button:hover {
     background-color: #015047;
+}
+
+.link {
+    display: block;
+    text-align: center;
+    margin-top: 1.25rem;
+    color: rgb(46, 45, 45);
+    text-decoration: none;
 }

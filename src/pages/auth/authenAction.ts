@@ -5,8 +5,12 @@ import type { IErrorRes } from "../../models/interfaces/errorRes";
 import { redirect } from "react-router-dom";
 
 
-
-export default async function authenAction(args: ActionFunctionArgs, backendAPI: BackendUrl) {
+/**
+ * @param {ActionFunctionArgs} args - 
+ * @param {BackendUrl} backendAPI - 
+ * @param {Function(resJson)} actionInDone - 
+ */
+export default async function authenAction(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: IErrorRes) => void) {
     try {
         const formData = await args.request.formData();
         const data = Object.fromEntries(formData);
@@ -19,12 +23,13 @@ export default async function authenAction(args: ActionFunctionArgs, backendAPI:
             credentials: 'include',
             body: JSON.stringify(data),
         });
-
+        const resJson = await res.json()
+        resJson.status = resJson.status ?? res.status
         if (res.ok) {
-            return redirect('/')
+            return actionInDone ? actionInDone(resJson) : redirect('/')
         }
         // this return errorRes object from the backend
-        return res.json()
+        return resJson
 
     } catch (error) {
         const errorRes = error as IErrorRes;

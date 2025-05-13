@@ -5,5 +5,6 @@ export enum BackendUrl {
     cart = baseUrl + '/cart',
     login = baseUrl + '/login',
     signUp = baseUrl + '/sign-up',
+    resetPass = baseUrl + '/reset-pass',
     testCookie = baseUrl + '/test-cookie',
 }

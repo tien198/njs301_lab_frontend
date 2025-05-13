@@ -1,8 +1,10 @@
 import type { IErrorRes } from '../../models/interfaces/errorRes';
 
-import { Form, useActionData } from 'react-router-dom';
 import styles from './authen.module.css';
+
+import { Form, Link, useActionData } from 'react-router-dom';
 import ErrorMsg from '../../components/layouts/ErrorMsg';
+import { shopRouteURL_Absolute } from '../../utilities/routeUrl';
 
 
 
@@ -23,6 +25,8 @@ export default function Login() {
                 }
                 <button type="submit" className={styles['button']}>Login</button>
             </Form>
+            <Link className={styles['link']}
+                to={shopRouteURL_Absolute.resetPassword}>Forgot password?</Link>
         </div>
     );
 }

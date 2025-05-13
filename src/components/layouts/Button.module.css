@@ -1,0 +1,39 @@
+.btn {
+    border: 1px solid #0f766e;
+    /* border-teal-700 */
+    padding-top: 0.5rem;
+    /* py-2 */
+    padding-bottom: 0.5rem;
+    padding-left: 5rem;
+    /* px-20 = 5rem */
+    padding-right: 5rem;
+    border-radius: 0.25rem;
+    /* rounded */
+    margin-top: 1rem;
+    /* mt-4 */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #0f766e;
+    /* bg-teal-700 */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #115e59;
+    /* hover:bg-teal-800 */
+}
+
+.btn-white {
+    background-color: white;
+    color: #0f766e;
+    /* text-teal-700 */
+}
+
+.btn-white:hover {
+    background-color: #115e59;
+    /* hover:bg-teal-800 */
+    color: white;
+}

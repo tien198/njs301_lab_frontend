@@ -2,17 +2,18 @@ import type { PropsWithChildren } from "react";
 
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import useModalStore from "./store";
+import modalStore from "./store";
 import { FaXmark } from 'react-icons/fa6'
 
 // css
 import style from './Modal.module.css'
+import { useStore } from "zustand";
 
 
 
 function Modal({ children }: PropsWithChildren) {
-    const hidden = useModalStore(state => state.hidden)
-    const setHidden = useModalStore(state => state.setHidden)
+    const hidden = useStore(modalStore, state => state.hidden)
+    const setHidden = useStore(modalStore, state => state.setHidden)
     const hide = () => setHidden(style['fading-hidden'])
 
 
@@ -31,8 +32,8 @@ function Modal({ children }: PropsWithChildren) {
     return createPortal(
         <div className={hidden}>
             <div className={style['backdrop']} onClick={hide}></div>
-            <div className={`${style['modal']} `}>
-                <FaXmark onClick={hide} className="fixed top-4 right-10 text-3xl lg:top-7 lg:text-4xl hover:cursor-pointer" />
+            <div className={style['modal']}>
+                <FaXmark onClick={hide} className={style['close-icon']} />
                 {children}
             </div>
         </div>,
