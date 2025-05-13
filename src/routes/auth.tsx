@@ -17,14 +17,14 @@ const authRoute: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <Login />
             </Suspense>,
-            action: args => import('../pages/auth/Login').then(module => module.action(args))
+            action: args => import('../pages/auth/Login.action').then(module => module.action(args))
         },
         {
             path: shopRouteURL.signup,
             element: <Suspense fallback={<Fallback />}>
                 <Signup />
             </Suspense>,
-            action: args => import('../pages/auth/Signup').then(module => module.action(args))
+            action: args => import('../pages/auth/Signup.action').then(module => module.action(args))
         },
         {
             path: shopRouteURL.testCookie,

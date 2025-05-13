@@ -1,5 +1,12 @@
-export default interface IErrorRes {
+
+export interface IErrorRes {
     status: number
     message: string
-    error?: object
+    errors?: object
+}
+
+export interface IErrorResGen<T extends object> {
+    status: number
+    message: string
+    errors?: T
 }

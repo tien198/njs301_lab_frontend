@@ -1,5 +1,5 @@
 import type { StoreApi, UseBoundStore } from 'zustand'
-import type IErrorRes from '../../../models/interfaces/errorRes'
+import type {IErrorRes} from '../../../models/interfaces/errorRes'
 
 import { create } from 'zustand'
 

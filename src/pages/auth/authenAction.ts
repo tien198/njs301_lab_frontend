@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs } from "react-router-dom";
 import type { BackendUrl } from "../../utilities/backendUrl";
-import type IErrorRes from "../../models/interfaces/errorRes";
+import type { IErrorRes } from "../../models/interfaces/errorRes";
 
 import { redirect } from "react-router-dom";
 
