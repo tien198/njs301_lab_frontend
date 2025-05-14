@@ -1,15 +1,15 @@
-import type { IErrorRes } from '../../models/interfaces/errorRes';
+import type { IErrorRes } from '../../../models/interfaces/errorRes';
 
-import styles from './authen.module.css';
-import modalStyle from '../../components/modal/Modal.module.css'
+import styles from '../authen.module.css';
+import modalStyle from '../../../components/modal/Modal.module.css'
 
 import { Form, useNavigate, useActionData } from 'react-router-dom';
 import { useCallback } from 'react';
 
 
-import ErrorMsg from '../../components/layouts/ErrorMsg';
-import modalStore from '../../components/modal/store';
-import InformModal from '../../components/modal/InformModal';
+import ErrorMsg from '../../../components/layouts/ErrorMsg';
+import modalStore from '../../../components/modal/store';
+import InformModal from '../../../components/modal/InformModal';
 
 
 

@@ -1,15 +1,12 @@
-import type { ActionFunctionArgs } from "react-router-dom"
-
-import Product from "../../models/Product"
-import { BackendUrl } from "../../utilities/backendUrl"
+import Product from "../../../models/Product"
 import { Form } from "react-router-dom"
 
-import './forms.css'
+import '../forms.css'
 
 type Props = { isEditing: boolean, product?: Product }
 
 export default function AddProduct({ isEditing, product }: Props) {
-  
+
   return (
     <main>
       <Form className="product-form" method="POST">
@@ -38,14 +35,3 @@ export default function AddProduct({ isEditing, product }: Props) {
 }
 
 
-export async function action(arg: ActionFunctionArgs) {
-  const data = Object.fromEntries((await arg.request.formData()).entries())
-  
-  await fetch(BackendUrl.addProduct, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-}

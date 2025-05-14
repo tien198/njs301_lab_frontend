@@ -8,20 +8,18 @@ import { redirect } from "react-router-dom";
 /**
  * @param {ActionFunctionArgs} args - 
  * @param {BackendUrl} backendAPI - 
+ * @param {object | string} bodyData - body in post reqest - will be stringfy to json before request was sent
  * @param {Function(resJson)} actionInDone - 
  */
-export default async function routerAction(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: IErrorRes) => void) {
+export default async function routerAction(args: ActionFunctionArgs, backendAPI: BackendUrl, bodyData: string | object, actionInDone?: (resJson: IErrorRes) => void) {
     try {
-        const formData = await args.request.formData();
-        const data = Object.fromEntries(formData);
-
         const res = await fetch(backendAPI, {
             method: args.request.method,
             headers: {
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
-            body: JSON.stringify(data),
+            body: JSON.stringify(bodyData),
         });
         const resJson = await res.json()
         resJson.status = resJson.status ?? res.status

@@ -29,6 +29,3 @@ export default function Cart() {
     )
 }
 
-export function loader(){
-    
-}

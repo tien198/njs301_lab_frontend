@@ -1,21 +1,22 @@
-import type { IErrorRes } from '../../models/interfaces/errorRes';
+import type { IErrorRes } from '../../../models/interfaces/errorRes';
+import type IAuthError from '../../../models/interfaces/authError';
+// CSS
+import styles from '../authen.module.css';
+import modalStyle from '../../../components/modal/Modal.module.css'
 
-import styles from './authen.module.css';
-import modalStyle from '../../components/modal/Modal.module.css'
-
-import { Form, useNavigate, useActionData } from 'react-router-dom';
+import { Form, useNavigate, useActionData, useParams } from 'react-router-dom';
 import { useCallback } from 'react';
 
 
-import ErrorMsg from '../../components/layouts/ErrorMsg';
-import modalStore from '../../components/modal/store';
-import InformModal from '../../components/modal/InformModal';
-import { shopRouteURL_Absolute } from '../../utilities/RouteUlti/routeUrl';
-import type IAuthError from '../../models/interfaces/authError';
+import ErrorMsg from '../../../components/layouts/ErrorMsg';
+import modalStore from '../../../components/modal/store';
+import InformModal from '../../../components/modal/InformModal';
+import { shopRouteURL_Absolute } from '../../../utilities/RouteUlti/routeUrl';
 
 
 
-export default function NewPassword() {
+export default function ResetPassword() {
+    const { token } = useParams()
     const actionData: IErrorRes | undefined = useActionData()
     let error: IAuthError = {}
     if (actionData?.errors)
@@ -36,6 +37,7 @@ export default function NewPassword() {
                 <input name='confirmPassword' type="password" placeholder="Confirm password" className={styles['input']} />
                 {error.confirmPass && <ErrorMsg msg={error.confirmPass} />}
 
+                <input type="hidden" name='resetToken' value={token} />
                 <div>
                     <button type="submit" className={styles['button-bg-white']}>Reset Password</button>
                 </div>

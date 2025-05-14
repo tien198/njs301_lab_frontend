@@ -1,11 +1,11 @@
-import type { IErrorResGen } from '../../models/interfaces/errorRes';
-import type IAuthError from '../../models/interfaces/authError';
+import type IAuthError from '../../../models/interfaces/authError';
+import type { IErrorResGen } from '../../../models/interfaces/errorRes';
 
-import styles from './authen.module.css';
+import styles from '../authen.module.css';
 
 import { Form, useActionData } from 'react-router-dom';
+import ErrorMsg from '../../../components/layouts/ErrorMsg';
 
-import ErrorMsg from '../../components/layouts/ErrorMsg';
 
 
 export default function Signup() {

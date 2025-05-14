@@ -27,7 +27,7 @@ const adminRoute: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <AddProduct isEditing={false} />
             </Suspense>,
-            action: (arg) => import('../pages/admin/AddProduct').then(i => i.action(arg))
+            action: (arg) => import('../pages/admin/AddProduct/action').then(i => i.action(arg))
         },
         {
             path: shopRouteURL.editProduct,

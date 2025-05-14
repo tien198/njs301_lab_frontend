@@ -1,9 +1,9 @@
-import './product.css'
+import '../product.css'
 import { Await, useLoaderData } from 'react-router-dom'
-import Product from '../../models/Product'
-import ProductComponent from '../../components/ProductComponent'
+import Product from '../../../models/Product'
+import ProductComponent from '../../../components/ProductComponent'
 import { Suspense } from 'react'
-import { Fallback } from '../../components/Fallback'
+import { Fallback } from '../../../components/Fallback'
 
 export default function ProductPage() {
   const { prodsDefer } = useLoaderData()
