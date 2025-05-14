@@ -4,7 +4,7 @@ import type { RouteObject } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import { Fallback } from "../components/Fallback"
 import { Outlet } from "react-router-dom"
-import { shopRouteURL } from "../utilities/routeUrl"
+import { shopRouteURL } from "../utilities/RouteUlti/routeUrl"
 
 const Product = lazy(() => import('../pages/shop/Product'))
 const Cart = lazy(() => import('../pages/shop/Cart'))
@@ -21,14 +21,14 @@ const shopRoute: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            loader: () => import('../pages/shop/Product').then(i => i.productLoader())
+            loader: () => import('../pages/shop/Product.loader').then(i => i.loader())
         },
         {
             path: shopRouteURL.products,
             element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            loader: () => import('../pages/shop/Product').then(i => i.productLoader())
+            loader: () => import('../pages/shop/Product.loader').then(i => i.loader())
         },
         {
             path: 'cart',

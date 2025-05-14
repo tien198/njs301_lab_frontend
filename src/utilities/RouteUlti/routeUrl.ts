@@ -4,7 +4,8 @@ export enum shopRouteURL {
     login = 'login',
     signup = 'sign-up',
     logout = 'logout',
-    resetPassword='reset-password',
+    resetPassword = 'reset-password',
+    newPassword = 'new-password',
     testCookie = 'test-cookie',
 
     admin = '/admin/',
@@ -18,7 +19,8 @@ export enum shopRouteURL_Absolute {
     login = base + shopRouteURL.authen + shopRouteURL.login,
     signup = base + shopRouteURL.authen + shopRouteURL.signup,
     logout = base + shopRouteURL.authen + shopRouteURL.logout,
-    resetPassword=base + shopRouteURL.authen + shopRouteURL.resetPassword,
+    resetPassword = base + shopRouteURL.authen + shopRouteURL.resetPassword,
+    newPassword = base + shopRouteURL.authen + shopRouteURL.newPassword,
     testCookie = base + shopRouteURL.authen + shopRouteURL.testCookie,
 
 

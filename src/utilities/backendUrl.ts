@@ -6,5 +6,6 @@ export enum BackendUrl {
     login = baseUrl + '/login',
     signUp = baseUrl + '/sign-up',
     resetPass = baseUrl + '/reset-pass',
+    createNewPass = '/create-new-pass',
     testCookie = baseUrl + '/test-cookie',
 }

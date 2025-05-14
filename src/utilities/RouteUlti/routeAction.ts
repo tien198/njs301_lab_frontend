@@ -1,5 +1,5 @@
 import type { ActionFunctionArgs } from "react-router-dom";
-import type { BackendUrl } from "../../utilities/backendUrl";
+import type { BackendUrl } from "../backendUrl";
 import type { IErrorRes } from "../../models/interfaces/errorRes";
 
 import { redirect } from "react-router-dom";
@@ -10,7 +10,7 @@ import { redirect } from "react-router-dom";
  * @param {BackendUrl} backendAPI - 
  * @param {Function(resJson)} actionInDone - 
  */
-export default async function authenAction(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: IErrorRes) => void) {
+export default async function routerAction(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: IErrorRes) => void) {
     try {
         const formData = await args.request.formData();
         const data = Object.fromEntries(formData);

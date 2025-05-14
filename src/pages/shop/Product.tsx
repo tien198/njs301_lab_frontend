@@ -1,7 +1,6 @@
 import './product.css'
 import { Await, useLoaderData } from 'react-router-dom'
 import Product from '../../models/Product'
-import { BackendUrl } from '../../utilities/backendUrl'
 import ProductComponent from '../../components/ProductComponent'
 import { Suspense } from 'react'
 import { Fallback } from '../../components/Fallback'
@@ -41,14 +40,3 @@ export default function ProductPage() {
 //   }
 // }
 
-
-export function productLoader() {
-  const prodsDefer = fetch(BackendUrl.baseUrl).then(res => res.json())
-    .catch(error => {
-      console.error(error)
-      return Promise.resolve([])
-    })
-  return {
-    prodsDefer
-  }
-}

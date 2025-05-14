@@ -3,7 +3,7 @@ import type { RouteObject } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Fallback } from "../components/Fallback";
-import { shopRouteURL } from "../utilities/routeUrl";
+import { shopRouteURL } from "../utilities/RouteUlti/routeUrl";
 
 const Product = lazy(() => import('../pages/admin/Products'))
 const AddProduct = lazy(() => import('../pages/admin/AddProduct'))

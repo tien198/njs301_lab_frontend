@@ -1,13 +1,14 @@
 import type { RouteObject } from 'react-router-dom'
 
 import { Outlet } from 'react-router-dom'
-import { shopRouteURL } from '../utilities/routeUrl'
+import { shopRouteURL } from '../utilities/RouteUlti/routeUrl'
 import { lazy, Suspense } from 'react'
 import { Fallback } from '../components/Fallback'
 
 const Login = lazy(() => import('../pages/auth/Login'))
 const Signup = lazy(() => import('../pages/auth/Signup'))
 const ResetPassword = lazy(() => import('../pages/auth/ResetPassword'))
+const NewPassword = lazy(() => import('../pages/auth/NewPassword'))
 
 const authRoute: RouteObject = {
     path: shopRouteURL.authen,
@@ -33,6 +34,13 @@ const authRoute: RouteObject = {
                 <ResetPassword />
             </Suspense>,
             action: args => import('../pages/auth/ResetPassword.action').then(module => module.action(args))
+        },
+        {
+            path: shopRouteURL.newPassword + '/:token',
+            element: <Suspense fallback={<Fallback />}>
+                <NewPassword />
+            </Suspense>,
+            action: args => import('../pages/auth/NewPassword.action').then(module => module.action(args))
         },
         {
             path: shopRouteURL.testCookie,

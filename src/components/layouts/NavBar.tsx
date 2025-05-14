@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { shopRouteURL_Absolute } from "../../utilities/routeUrl";
+import { shopRouteURL_Absolute } from "../../utilities/RouteUlti/routeUrl";
 
 // import '../../pages/root.css'
 function NavBar() {
