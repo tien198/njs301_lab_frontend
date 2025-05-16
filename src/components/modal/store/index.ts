@@ -7,6 +7,7 @@ import { createStore } from 'zustand'
 import modalStyle from '../Modal.module.css'
 
 
+
 // type Hidden = 'fading-hidden' | 'hidden' | ''
 interface IModalStore {
     hidden: string
@@ -18,7 +19,7 @@ interface IModalStore {
 }
 const modalStore: StoreApi<IModalStore> = createStore(set => ({
     hidden: modalStyle['hidden'],
-    resonse: { message: '' },
+    resonse: { message: '', name:'' },
     show: () => set(state => ({ ...state, hidden: '' })),
     setHidden: (hiddenClass) => set(state => ({
         ...state, hidden: hiddenClass

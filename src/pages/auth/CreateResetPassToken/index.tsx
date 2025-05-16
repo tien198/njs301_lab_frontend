@@ -16,8 +16,8 @@ import InformModal from '../../../components/modal/InformModal';
 export default function ResetPassword() {
     const actionData: IErrorRes | undefined = useActionData()
     let errorEntries: [string, string][] = []
-    if (actionData?.errors)
-        errorEntries = Object.entries(actionData.errors)
+    if (actionData?.cause)
+        errorEntries = Object.entries(actionData.cause)
 
     const navigate = useNavigate()
 
@@ -31,7 +31,7 @@ export default function ResetPassword() {
             <h2 className={styles['title']}>Email</h2>
             <Form className={styles['form']} method="post">
                 <input name='email' type="text" placeholder="Email" className={styles['input']} />
-                {actionData?.errors
+                {actionData?.cause
                     && errorEntries.map(i =>
                         <ErrorMsg key={i[0]} msg={i[1]} />
                     )

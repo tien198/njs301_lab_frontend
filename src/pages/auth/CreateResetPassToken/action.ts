@@ -12,6 +12,8 @@ export async function action(args: ActionFunctionArgs) {
     return await routeAction(args, BackendUrl.createResetPassToken, data, (resJson) => {
         modalStore.getState().setError({
             message: resJson.message,
+            name: ''
+            
         })
         if (resJson.status && resJson.status < 400)
             showModal()

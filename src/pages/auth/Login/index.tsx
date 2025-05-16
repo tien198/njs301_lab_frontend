@@ -12,8 +12,8 @@ import { shopRouteURL_Absolute } from '../../../utilities/RouteUlti/routeUrl';
 export default function Login() {
     const actionData: IErrorRes | undefined = useActionData()
     let errorEntries: [string, string][] = []
-    if (actionData?.errors)
-        errorEntries = Object.entries(actionData.errors)
+    if (actionData?.cause)
+        errorEntries = Object.entries(actionData.cause)
     return (
         <div className={styles['container']}>
             <h2 className={styles['title']}>Login</h2>

@@ -19,8 +19,8 @@ export default function ResetPassword() {
     const { token } = useParams()
     const actionData: IErrorRes | undefined = useActionData()
     let error: IAuthError = {}
-    if (actionData?.errors)
-        error = actionData.errors
+    if (actionData?.cause)
+        error = actionData.cause
 
     const navigate = useNavigate()
 
