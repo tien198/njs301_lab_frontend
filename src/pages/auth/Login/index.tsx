@@ -1,4 +1,5 @@
 import type { IErrorRes } from '../../../models/interfaces/errorRes';
+import type IAuthError from '../../../models/interfaces/authError';
 
 import styles from '../authen.module.css';
 
@@ -10,20 +11,19 @@ import { shopRouteURL_Absolute } from '../../../utilities/RouteUlti/routeUrl';
 
 
 export default function Login() {
-    const actionData: IErrorRes | undefined = useActionData()
-    let errorEntries: [string, string][] = []
-    if (actionData?.cause)
-        errorEntries = Object.entries(actionData.cause)
+    const actionData: IErrorRes<IAuthError> | undefined = useActionData()
+
     return (
         <div className={styles['container']}>
             <h2 className={styles['title']}>Login</h2>
             <Form className={styles['form']} method="post">
                 <input name='email' type="text" placeholder="Email" className={styles['input']} />
+                {actionData?.cause?.email && <ErrorMsg msg={actionData?.cause?.email} />}
+
                 <input name='password' type="password" placeholder="Password" className={styles['input']} />
-                {errorEntries.map(i =>
-                    <ErrorMsg msg={i[1]} />
-                )
-                }
+                {actionData?.cause?.password && <ErrorMsg msg={actionData?.cause?.password} />}
+                {actionData?.cause?.credential && <ErrorMsg msg={actionData?.cause?.credential} />}
+
                 <button type="submit" className={styles['button']}>Login</button>
             </Form>
             <Link className={styles['link']}

@@ -1,4 +1,6 @@
 export default interface IAuthError {
-    confirmPass?: string
-    wasExist?: string
+    email?: string
+    password?: string
+    confirmPassword?: string
+    credential?: string
 }

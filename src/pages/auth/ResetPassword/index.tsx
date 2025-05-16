@@ -34,8 +34,11 @@ export default function ResetPassword() {
             <h2 className={styles['title']}>Email</h2>
             <Form className={styles['form']} method="post">
                 <input name='password' type="password" placeholder="Password" className={styles['input']} />
+                {error.password && <ErrorMsg msg={error.password} />}
                 <input name='confirmPassword' type="password" placeholder="Confirm password" className={styles['input']} />
-                {error.confirmPass && <ErrorMsg msg={error.confirmPass} />}
+                {error.confirmPassword && <ErrorMsg msg={error.confirmPassword} />}
+
+                {error.credential && <ErrorMsg msg={error.credential} />}
 
                 <input type="hidden" name='resetToken' value={token} />
                 <div>

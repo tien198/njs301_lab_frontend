@@ -19,11 +19,13 @@ export default function Signup() {
             <h2 className={styles['title']}>Signup</h2>
             <Form className={styles['form']} method="post">
                 <input name='email' type="text" placeholder="Email" className={styles['input']} />
-                {error.wasExist && <ErrorMsg msg={error.wasExist} />}
+                {error.email && <ErrorMsg msg={error.email} />}
 
                 <input name='password' type="password" placeholder="Password" className={styles['input']} />
+                {error.password && <ErrorMsg msg={error.password} />}
+
                 <input name='confirmPassword' type="password" placeholder="Confirm password" className={styles['input']} />
-                {error.confirmPass && <ErrorMsg msg={error.confirmPass} />}
+                {error.confirmPassword && <ErrorMsg msg={error.confirmPassword} />}
 
                 <button type="submit" className={styles['button']}>Signup</button>
             </Form>
