@@ -1,16 +1,27 @@
-import type { ActionFunctionArgs } from "react-router-dom"
-import { BackendUrl } from "../../../utilities/backendUrl"
+import type { ActionFunctionArgs } from "react-router-dom";
+
+import routeAction from "../../../utilities/RouteUlti/routeAction"
+import { BackendUrl } from "../../../utilities/backendUrl";
+
+import modalStore from "../../../components/modal/store";
+import type { IRes } from "../../../models/interfaces/response";
 
 
 
-export async function action(arg: ActionFunctionArgs) {
-    const data = Object.fromEntries((await arg.request.formData()).entries())
+export async function action(args: ActionFunctionArgs) {
+    const data = Object.fromEntries((await args.request.formData()).entries())
 
-    await fetch(BackendUrl.addProduct, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
+    const showModal = modalStore.getState().show
+    const setError = modalStore.getState().setError
+
+    const actionInDone = (resJson: IRes) => {
+        setError({
+            message: resJson.message,
+            name: '',
+        })
+        if (resJson.status && resJson.status < 400)
+            showModal()
+    }
+
+    return await routeAction(args, BackendUrl.addProduct, data, actionInDone)
 }

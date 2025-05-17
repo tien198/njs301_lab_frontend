@@ -1,3 +1,8 @@
+.product-form {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
 .form-control {
   margin: 1rem 0;
 }
@@ -15,6 +20,7 @@
   border: 1px solid #a1a1a1;
   font: inherit;
   border-radius: 2px;
+  padding: .75rem;
 }
 
 .form-control input:focus,

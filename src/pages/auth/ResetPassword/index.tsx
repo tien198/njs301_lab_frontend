@@ -1,5 +1,5 @@
-import type { IErrorRes } from '../../../models/interfaces/errorRes';
-import type IAuthError from '../../../models/interfaces/authError';
+import type { IErrorRes } from '../../../models/interfaces/response/error';
+import type IAuthError from '../../../models/interfaces/response/error/authError';
 // CSS
 import styles from '../authen.module.css';
 import modalStyle from '../../../components/modal/Modal.module.css'

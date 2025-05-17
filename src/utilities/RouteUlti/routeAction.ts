@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs } from "react-router-dom";
 import type { BackendUrl } from "../backendUrl";
-import type { IErrorRes } from "../../models/interfaces/errorRes";
+import type { IErrorRes } from "../../models/interfaces/response/error";
 
 import { redirect } from "react-router-dom";
 
@@ -9,9 +9,9 @@ import { redirect } from "react-router-dom";
  * @param {ActionFunctionArgs} args - 
  * @param {BackendUrl} backendAPI - 
  * @param {object | string} bodyData - body in post reqest - will be stringfy to json before request was sent
- * @param {Function(resJson)} actionInDone - 
+ * @param {Function(resJson)} actionInDone - action-in-done
  */
-export default async function routerAction(args: ActionFunctionArgs, backendAPI: BackendUrl, bodyData: string | object, actionInDone?: (resJson: IErrorRes) => void) {
+export default async function routerAction<T extends object>(args: ActionFunctionArgs, backendAPI: BackendUrl, bodyData: string | object, actionInDone?: (resJson: IErrorRes<T>) => void) {
     try {
         const res = await fetch(backendAPI, {
             method: args.request.method,
@@ -29,10 +29,10 @@ export default async function routerAction(args: ActionFunctionArgs, backendAPI:
         // this return errorRes object from the backend
         return resJson
 
-    } catch (error) {
-        const errorRes = error as IErrorRes;
+    } catch (error: any) {
+        // IErrorRes;
         console.error(error);
         alert('Something went wrong');
-        return errorRes?.message || 'Something went wrong';
+        return error
     }
 }

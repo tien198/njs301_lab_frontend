@@ -1,5 +1,5 @@
 import type { StoreApi } from 'zustand'
-import type { IErrorRes } from '../../../models/interfaces/errorRes'
+import type { IErrorRes } from '../../../models/interfaces/response/error'
 import type { IRes } from '../../../models/interfaces/response'
 
 import { createStore } from 'zustand'

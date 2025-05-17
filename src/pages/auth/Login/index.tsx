@@ -1,5 +1,5 @@
-import type { IErrorRes } from '../../../models/interfaces/errorRes';
-import type IAuthError from '../../../models/interfaces/authError';
+import type { IErrorRes } from '../../../models/interfaces/response/error';
+import type IAuthError from '../../../models/interfaces/response/error/authError';
 
 import styles from '../authen.module.css';
 
@@ -27,7 +27,9 @@ export default function Login() {
                 <button type="submit" className={styles['button']}>Login</button>
             </Form>
             <Link className={styles['link']}
-                to={shopRouteURL_Absolute.resetPassword}>Forgot password?</Link>
+                to={shopRouteURL_Absolute.resetPassword}>
+                Forgot password?
+            </Link>
         </div>
     );
 }

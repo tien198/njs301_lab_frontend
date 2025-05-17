@@ -13,7 +13,7 @@ type props = {
 
 export default function ErrorModal({ truthyFnc, falsyFnc }: props) {
     const status = useStore(modalStore, state => state.resonse.status)
-    const message = useStore(modalStore, state => state.resonse.message)
+    const message = useStore(modalStore, state => state.resonse.message ?? state.resonse.name)
     const errors = useStore(modalStore, state => state.resonse.cause)
 
     let errorEntries: [string, string][] = []

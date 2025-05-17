@@ -7,6 +7,7 @@ import { FaXmark } from 'react-icons/fa6'
 
 // css
 import style from './Modal.module.css'
+
 import { useStore } from "zustand";
 
 

@@ -1,4 +1,4 @@
-import type { IErrorRes } from '../../../models/interfaces/errorRes';
+import type { IErrorRes } from '../../../models/interfaces/response/error';
 
 import styles from '../authen.module.css';
 import modalStyle from '../../../components/modal/Modal.module.css'
@@ -19,7 +19,7 @@ export default function ResetPassword() {
     if (actionData?.cause)
         errorEntries = Object.entries(actionData.cause)
 
-    const navigate = useNavigate()
+    const navigate = useCallback(useNavigate(), [])
 
     const modalFnc = useCallback(() => {
         navigate('/')

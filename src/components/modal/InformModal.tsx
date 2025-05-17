@@ -13,9 +13,9 @@ type props = {
 }
 
 export default function InformModal({ truthyFnc, falsyFnc }: props) {
-    const mStore = useStore(modalStore)
-    const message = mStore.resonse.message
-
+    const message = useStore(modalStore,
+        state => state.resonse.message || state.resonse.name
+    )
 
     return (
         <Modal>
