@@ -1,7 +1,6 @@
-import '../product.css'
 import { Await, useLoaderData } from 'react-router-dom'
 import Product from '../../../models/Product'
-import ProductComponent from '../../../components/ProductComponent'
+import ProductComponent from '../../../components/Product'
 import { Suspense } from 'react'
 import { Fallback } from '../../../components/Fallback'
 
@@ -28,15 +27,3 @@ export default function ProductPage() {
     </main>
   )
 }
-
-// export async function productLoader() {
-//   try {
-//     const res = await fetch(BackendUrl.baseUrl)
-//     const prods = await res.json()
-//     return prods
-//   } catch (error) {
-//     console.error(error)
-//     return []
-//   }
-// }
-

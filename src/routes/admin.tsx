@@ -9,6 +9,8 @@ const Product = lazy(() => import('../pages/admin/Products'))
 const AddProduct = lazy(() => import('../pages/admin/AddProduct'))
 const EditProduct = lazy(() => import('../pages/admin/EditProduct'))
 
+
+
 const adminRoute: RouteObject = {
     path: shopRouteURL.admin,
     element: <>
@@ -20,21 +22,24 @@ const adminRoute: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            // loader:
+            loader: () => import('../pages/admin/Products/loader').then(i=> i.loader())
         },
         {
             path: shopRouteURL.addProduct,
             element: <Suspense fallback={<Fallback />}>
-                <AddProduct isEditing={false} />
+                <AddProduct />
             </Suspense>,
-            action: (arg) => import('../pages/admin/AddProduct/action').then(i => i.action(arg))
+            action: (args) => import('../pages/admin/AddProduct/action').then(i => i.action(args))
         },
         {
-            path: shopRouteURL.editProduct,
+            path: shopRouteURL.editProduct + '/:prodId',
             element: <Suspense fallback={<Fallback />}>
                 <EditProduct />
             </Suspense>,
-            // loader:
+            loader: (args) => import('../pages/admin/EditProduct/loader').then(i => i.loader(args)),
+            action: (args) => import('../pages/admin/EditProduct/action').then(i => i.action(args))
+            
+            
         },
     ]
 }

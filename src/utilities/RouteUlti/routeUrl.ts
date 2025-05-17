@@ -7,8 +7,10 @@ export enum shopRouteURL {
     resetPassword = 'reset-password',
     testCookie = 'test-cookie',
 
-    admin = '/admin/',
     products = 'products',
+    product = 'product',
+
+    admin = '/admin/',
     addProduct = 'add-product',
     editProduct = 'edit-product'
 }
@@ -21,10 +23,12 @@ export enum shopRouteURL_Absolute {
     resetPassword = base + shopRouteURL.authen + shopRouteURL.resetPassword,
     testCookie = base + shopRouteURL.authen + shopRouteURL.testCookie,
 
-
+    products= base+shopRouteURL.products,
+    product= base+shopRouteURL.product,
 
     admin = shopRouteURL.admin,
-    products = admin + shopRouteURL.products,
+    adminProducts = admin + shopRouteURL.products,
+    adminProduct = admin + shopRouteURL.product,
     addProduct = admin + shopRouteURL.addProduct,
     editProduct = admin + shopRouteURL.editProduct
 }

@@ -107,3 +107,8 @@ main {
   background-color: #00695c;
   color: white;
 }
+
+.product-link{
+  color: rgb(19, 13, 13);
+  text-decoration: none;
+}
