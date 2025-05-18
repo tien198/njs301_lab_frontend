@@ -2,8 +2,6 @@ import { Suspense, useCallback } from 'react'
 import { Await, useLoaderData, useNavigate } from 'react-router-dom'
 import type { Loader } from './loader'
 
-
-import '../forms.css'
 import modalStyle from '../../../components/modal/Modal.module.css'
 
 import ProductForm from '../comps/ProductForm'

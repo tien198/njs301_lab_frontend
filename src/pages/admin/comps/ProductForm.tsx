@@ -5,7 +5,7 @@ import type ErrorRes from "../../../models/ErrorResponse"
 import { Form, useActionData } from "react-router-dom"
 import ErrorMsg from "../../../components/layouts/ErrorMsg"
 
-import '../forms.css'
+import style from './forms.module.css'
 
 
 
@@ -16,26 +16,26 @@ export default function ProductForm({ isEditing, product }: Props) {
     const actionData: ErrorRes<IProdError> | undefined = useActionData()
 
     return (
-        <Form className='product-form' method='POST'>
-            <div className='form-control'>
+        <Form className={style['product-form']} method='POST'>
+            <div className={style['form-control']}>
                 <label htmlFor='title'>Title</label>
                 <input type='text' name='title' id='title' defaultValue={product?.title} />
                 {actionData?.cause?.title && <ErrorMsg msg={actionData?.cause?.title} />}
             </div>
 
-            <div className='form-control'>
+            <div className={style['form-control']}>
                 <label htmlFor='imageUrl'>Image URL</label>
                 <input type='text' name='imageUrl' id='imageUrl' defaultValue={product?.imageUrl} />
                 {actionData?.cause?.imageUrl && <ErrorMsg msg={actionData?.cause?.imageUrl} />}
             </div>
 
-            <div className='form-control'>
+            <div className={style['form-control']}>
                 <label htmlFor='price'>Price</label>
                 <input type='number' name='price' id='price' step='0.01' defaultValue={product?.price} />
                 {actionData?.cause?.price && <ErrorMsg msg={actionData?.cause?.price} />}
             </div>
 
-            <div className='form-control'>
+            <div className={style['form-control']}>
                 <label htmlFor='description'>Description</label>
                 <textarea name='description' id='description' rows={5} defaultValue={product?.description} />
                 {actionData?.cause?.description && <ErrorMsg msg={actionData?.cause?.description} />}
