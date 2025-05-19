@@ -1,4 +1,4 @@
-import type { IErrorRes } from '../../../models/interfaces/response/error';
+import type ErrorRes from '../../../models/ErrorResponse';
 import type IAuthError from '../../../models/interfaces/response/error/authError';
 
 import styles from '../authen.module.css';
@@ -11,12 +11,12 @@ import { shopRouteURL_Absolute } from '../../../utilities/RouteUlti/routeUrl';
 
 
 export default function Login() {
-    const actionData: IErrorRes<IAuthError> | undefined = useActionData()
+    const actionData: ErrorRes<IAuthError> | undefined = useActionData()
 
     return (
         <div className={styles['container']}>
             <h2 className={styles['title']}>Login</h2>
-            <Form className={styles['form']} method="post">
+            <Form className={styles['form']} method="post" encType='application/x-www-form-urlencoded'>
                 <input name='email' type="text" placeholder="Email" className={styles['input']} />
                 {actionData?.cause?.email && <ErrorMsg msg={actionData?.cause?.email} />}
 

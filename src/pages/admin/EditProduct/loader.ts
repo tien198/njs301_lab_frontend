@@ -11,5 +11,5 @@ export type Loader = {
 export async function loader(args: LoaderFunctionArgs) {
     const prodId = args.params['prodId']
 
-    return await routeLoader(BackendUrl.adminProduct + '/' + prodId)
+    return await routeLoader(BackendUrl.adminProduct + prodId)
 }

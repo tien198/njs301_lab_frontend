@@ -32,6 +32,8 @@ export default function ProductForm({ isEditing, product }: Props) {
             <div className={style['form-control']}>
                 <label htmlFor='image'>Image</label>
                 <input type='file' name='image' id='image' />
+                {actionData?.cause?.image && <ErrorMsg msg={actionData?.cause?.image} />}
+
             </div>
 
             <div className={style['form-control']}>

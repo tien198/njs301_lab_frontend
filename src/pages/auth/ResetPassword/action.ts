@@ -1,10 +1,8 @@
 import type { LoaderFunctionArgs } from "react-router-dom";
 import { BackendUrl } from "../../../utilities/backendUrl";
-import routerAction from "../../../utilities/RouteUlti/routeAction";
+import routeAction_URLSearchParams from "../../../utilities/RouteUlti/routeAction_URLSearchParams";
 
 export async function action(args: LoaderFunctionArgs) {
-    const formData = await args.request.formData()
-    const data = Object.fromEntries(formData) 
 
-    return await routerAction(args, BackendUrl.resetPass, data!)
+    return await routeAction_URLSearchParams(args, BackendUrl.resetPass)
 }

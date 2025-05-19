@@ -8,15 +8,17 @@ import { redirect } from "react-router-dom";
 /**
  * @param {ActionFunctionArgs} args - 
  * @param {BackendUrl} backendAPI - 
- * @param {object | string} bodyData - body in post reqest - will be stringfy to json before request was sent
  * @param {Function(resJson)} actionInDone - action-in-done
  */
-export default async function routerAction<T extends object>(args: ActionFunctionArgs, backendAPI: BackendUrl, bodyData: string | object, actionInDone?: (resJson: ErrorRes<T>) => void) {
+export default async function routerActionURLSearchParams<T extends object>(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: ErrorRes<T>) => void) {
     try {
+        const formData: FormData = await args.request.formData()
         const res = await fetch(backendAPI, {
             method: args.request.method,
             credentials: 'include',
-            body: await args.request.formData()
+            // pass URLSearchParams to body to manually set headers - in hear: content-type: 'application/x-www-form-urlencoded'
+            body: new URLSearchParams(formData as any),
+            headers: args.request.headers,
         });
         const resJson = await res.json()
         resJson.status = resJson.status ?? res.status

@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs } from "react-router-dom";
 
-import routeAction from "../../../utilities/RouteUlti/routeAction"
+import routeAction_FormData from "../../../utilities/RouteUlti/routeAction_FormData"
 import { BackendUrl } from "../../../utilities/backendUrl";
 
 import modalStore from "../../../components/modal/store";
@@ -23,5 +23,5 @@ export async function action(args: ActionFunctionArgs) {
             showModal()
     }
 
-    return await routeAction(args, BackendUrl.addProduct, '', actionInDone)
+    return await routeAction_FormData(args, BackendUrl.addProduct, actionInDone)
 }

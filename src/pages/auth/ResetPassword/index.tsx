@@ -1,5 +1,6 @@
-import type { IErrorRes } from '../../../models/interfaces/response/error';
+import type ErrorRes from '../../../models/ErrorResponse';
 import type IAuthError from '../../../models/interfaces/response/error/authError';
+
 // CSS
 import styles from '../authen.module.css';
 import modalStyle from '../../../components/modal/Modal.module.css'
@@ -17,7 +18,7 @@ import { shopRouteURL_Absolute } from '../../../utilities/RouteUlti/routeUrl';
 
 export default function ResetPassword() {
     const { token } = useParams()
-    const actionData: IErrorRes | undefined = useActionData()
+    const actionData: ErrorRes | undefined = useActionData()
     let error: IAuthError = {}
     if (actionData?.cause)
         error = actionData.cause

@@ -1,5 +1,5 @@
+import type ErrorRes from '../../../models/ErrorResponse';
 import type IAuthError from '../../../models/interfaces/response/error/authError';
-import type { IErrorRes } from '../../../models/interfaces/response/error';
 
 import styles from '../authen.module.css';
 
@@ -9,7 +9,7 @@ import ErrorMsg from '../../../components/layouts/ErrorMsg';
 
 
 export default function Signup() {
-    const actionData: IErrorRes<IAuthError> | undefined = useActionData()
+    const actionData: ErrorRes<IAuthError> | undefined = useActionData()
     let error: IAuthError = {}
     if (actionData?.cause)
         error = actionData.cause

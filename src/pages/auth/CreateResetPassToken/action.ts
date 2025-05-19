@@ -1,8 +1,9 @@
 import type { ActionFunctionArgs } from "react-router-dom";
+import type ErrorRes from "../../../models/ErrorResponse";
 
-import type { IErrorRes } from "../../../models/interfaces/response/error";
 
-import routeAction from "../../../utilities/RouteUlti/routeAction";
+
+import routeAction_URLSearchParams from "../../../utilities/RouteUlti/routeAction_URLSearchParams";
 import { BackendUrl } from "../../../utilities/backendUrl";
 
 import modalStore from "../../../components/modal/store";
@@ -10,12 +11,11 @@ import modalStore from "../../../components/modal/store";
 
 
 export async function action(args: ActionFunctionArgs) {
-    const data = Object.fromEntries((await args.request.formData()).entries())
 
     const showModal = modalStore.getState().show
     const setError = modalStore.getState().setError
 
-    const actionInDone = (resJson: IErrorRes) => {
+    const actionInDone = (resJson: ErrorRes) => {
         setError({
             message: resJson.message,
             name: '',
@@ -25,5 +25,5 @@ export async function action(args: ActionFunctionArgs) {
             showModal()
     }
 
-    return await routeAction(args, BackendUrl.createResetPassToken, data, actionInDone)
+    return await routeAction_URLSearchParams(args, BackendUrl.createResetPassToken, actionInDone)
 }

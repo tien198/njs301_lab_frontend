@@ -1,4 +1,4 @@
-import type { IErrorRes } from '../../../models/interfaces/response/error';
+import type ErrorRes from '../../../models/ErrorResponse';
 
 import styles from '../authen.module.css';
 import modalStyle from '../../../components/modal/Modal.module.css'
@@ -14,7 +14,7 @@ import InformModal from '../../../components/modal/InformModal';
 
 
 export default function ResetPassword() {
-    const actionData: IErrorRes | undefined = useActionData()
+    const actionData: ErrorRes | undefined = useActionData()
     let errorEntries: [string, string][] = []
     if (actionData?.cause)
         errorEntries = Object.entries(actionData.cause)
