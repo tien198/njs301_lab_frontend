@@ -1,5 +1,6 @@
 import type Product from "../models/Product"
 import AddToCart from "../pages/shop/AddToCart"
+import { BackendUrl } from "../utilities/backendUrl"
 
 import style from './product.module.css'
 
@@ -12,7 +13,7 @@ export default function ProductComp({ product, isAdmin }: Props) {
                 <h1 className={style['product__title']}>{product.title}</h1>
             </header>
             <div className="card__image">
-                <img src={product.imageUrl} alt={product.title} />
+                <img src={BackendUrl.base + product.imageUrl} alt={product.title} />
             </div>
             <div className="card__content">
                 <h2 className={style['product__price']}>${product.price}</h2>

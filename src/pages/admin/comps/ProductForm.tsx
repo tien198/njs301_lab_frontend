@@ -16,17 +16,22 @@ export default function ProductForm({ isEditing, product }: Props) {
     const actionData: ErrorRes<IProdError> | undefined = useActionData()
 
     return (
-        <Form className={style['product-form']} method='POST'>
+        <Form className={style['product-form']} method='POST' encType="multipart/form-data" noValidate>
             <div className={style['form-control']}>
                 <label htmlFor='title'>Title</label>
                 <input type='text' name='title' id='title' defaultValue={product?.title} />
                 {actionData?.cause?.title && <ErrorMsg msg={actionData?.cause?.title} />}
             </div>
 
-            <div className={style['form-control']}>
+            {/* <div className={style['form-control']}>
                 <label htmlFor='imageUrl'>Image URL</label>
                 <input type='text' name='imageUrl' id='imageUrl' defaultValue={product?.imageUrl} />
                 {actionData?.cause?.imageUrl && <ErrorMsg msg={actionData?.cause?.imageUrl} />}
+            </div> */}
+
+            <div className={style['form-control']}>
+                <label htmlFor='image'>Image</label>
+                <input type='file' name='image' id='image' />
             </div>
 
             <div className={style['form-control']}>

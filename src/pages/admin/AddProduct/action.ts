@@ -9,7 +9,7 @@ import type { IRes } from "../../../models/interfaces/response";
 
 
 export async function action(args: ActionFunctionArgs) {
-    const data = Object.fromEntries((await args.request.formData()).entries())
+    // const data = Object.fromEntries((await args.request.formData()).entries())
 
     const showModal = modalStore.getState().show
     const setError = modalStore.getState().setError
@@ -23,5 +23,5 @@ export async function action(args: ActionFunctionArgs) {
             showModal()
     }
 
-    return await routeAction(args, BackendUrl.addProduct, data, actionInDone)
+    return await routeAction(args, BackendUrl.addProduct, '', actionInDone)
 }

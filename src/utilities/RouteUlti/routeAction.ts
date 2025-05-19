@@ -15,11 +15,8 @@ export default async function routerAction<T extends object>(args: ActionFunctio
     try {
         const res = await fetch(backendAPI, {
             method: args.request.method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
             credentials: 'include',
-            body: JSON.stringify(bodyData),
+            body: await args.request.formData()
         });
         const resJson = await res.json()
         resJson.status = resJson.status ?? res.status
