@@ -10,7 +10,7 @@ import { redirect } from "react-router-dom";
  * @param {BackendUrl} backendAPI - 
  * @param {Function(resJson)} actionInDone - action-in-done
  */
-export default async function routerActionURLSearchParams<T extends object>(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: ErrorRes<T>) => void) {
+export default async function routerAction_URLSearchParams<T extends object>(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: ErrorRes<T>) => void) {
     try {
         const formData: FormData = await args.request.formData()
         const res = await fetch(backendAPI, {
