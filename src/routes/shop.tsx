@@ -31,7 +31,7 @@ const shopRoute: RouteObject = {
             loader: () => import('../pages/shop/Product/loader').then(i => i.loader())
         },
         {
-            path: 'cart',
+            path: shopRouteURL.cart,
             element: <Suspense fallback={<Fallback />}>
                 <Cart />
             </Suspense>,
@@ -39,11 +39,11 @@ const shopRoute: RouteObject = {
             action: (arg) => import('../pages/shop/AddToCart/action').then(i => i.action(arg))
         },
         {
-            path: 'order',
+            path: shopRouteURL.order,
             element: <Suspense fallback={<Fallback />}>
                 <Order />
             </Suspense>,
-            // loader:
+            loader: (args) => import('../pages/shop/Order/loader').then(i => i.loader(args)),
         },
     ]
 }

@@ -1,5 +1,8 @@
+import type ErrorRes from "../../models/ErrorResponse"
+
 import { useStore } from "zustand"
 
+import modalStyle from './Modal.module.css'
 import informModalStyle from './InformModal.module.css'
 
 import Button from "../layouts/Button"
@@ -7,20 +10,30 @@ import Modal from "./Modal"
 import modalStore from "./store"
 
 type props = {
-    truthyFnc: () => void
-    falsyFnc: () => void
+    truthyFnc?: () => void
+    falsyFnc?: () => void
 }
 
-export default function ErrorModal({ truthyFnc, falsyFnc }: props) {
+function fnc() {
+    modalStore.setState({ hidden: modalStyle['fading-hidden'] })
+}
+
+export default function ErrorModal({ truthyFnc = fnc, falsyFnc = fnc }: props) {
+
+
     const status = useStore(modalStore, state => state.resonse.status)
-    const message = useStore(modalStore, state => state.resonse.message ?? state.resonse.name)
-    const errors = useStore(modalStore, state => state.resonse.cause)
+    const message = useStore(modalStore, state => state.resonse.message ?? (state.resonse as ErrorRes)?.name)
+    const errors = useStore(modalStore, state => (state.resonse as ErrorRes)?.cause)
+
 
     let errorEntries: [string, string][] = []
     if (errors)
         errorEntries = Object.entries(errors)
 
 
+    const type = useStore(modalStore, state => state.type)
+    if (type !== 'error')
+        return <></>
 
     return (
         <Modal>

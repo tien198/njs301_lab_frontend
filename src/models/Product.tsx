@@ -1,4 +1,4 @@
-import type IProduct from './interfaces/base/IProduct'
+import type { IProduct } from './interfaces/base/IProduct'
 
 export default class Product implements IProduct {
     constructor(

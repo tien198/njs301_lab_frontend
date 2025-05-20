@@ -1,21 +1,31 @@
 import { useStore } from "zustand"
 
+import modalStyle from './Modal.module.css'
 import informModalStyle from './InformModal.module.css'
 
 import Button from "../layouts/Button"
 import Modal from "./Modal"
 import modalStore from "./store"
+import type ErrorRes from "../../models/ErrorResponse"
 
 
 type props = {
-    truthyFnc: () => void
-    falsyFnc: () => void
+    truthyFnc?: () => void
+    falsyFnc?: () => void
 }
 
-export default function InformModal({ truthyFnc, falsyFnc }: props) {
+function fnc() {
+    modalStore.setState({ hidden: modalStyle['fading-hidden'] })
+}
+
+export default function InformModal({ truthyFnc = fnc, falsyFnc = fnc }: props) {
     const message = useStore(modalStore,
-        state => state.resonse.message || state.resonse.name
+        state => state.resonse.message || (state.resonse as ErrorRes).name
     )
+
+    const type = useStore(modalStore, state => state.type)
+    if (type !== 'inform')
+        return <></>
 
     return (
         <Modal>

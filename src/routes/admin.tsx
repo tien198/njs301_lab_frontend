@@ -22,7 +22,7 @@ const adminRoute: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            loader: () => import('../pages/admin/Products/loader').then(i=> i.loader())
+            loader: () => import('../pages/admin/Products/loader').then(i => i.loader())
         },
         {
             path: shopRouteURL.addProduct,
@@ -38,8 +38,6 @@ const adminRoute: RouteObject = {
             </Suspense>,
             loader: (args) => import('../pages/admin/EditProduct/loader').then(i => i.loader(args)),
             action: (args) => import('../pages/admin/EditProduct/action').then(i => i.action(args))
-            
-            
         },
     ]
 }

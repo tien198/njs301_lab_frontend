@@ -8,12 +8,10 @@ export async function routeLoader(backendAPI: string) {
         if (!res.ok)
             throw await res.json()
 
-        return {
-            prodDefer: res.json()
-        }
+        return res.json()
 
     } catch (error) {
         console.error(error)
-        return {}
+        return Promise.resolve()
     }
 }

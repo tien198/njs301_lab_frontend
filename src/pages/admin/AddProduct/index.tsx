@@ -7,11 +7,13 @@ import modalStyle from '../../../components/modal/Modal.module.css'
 import ProductForm from '../comps/ProductForm'
 import InformModal from '../../../components/modal/InformModal'
 import modalStore from '../../../components/modal/store'
+import { useStore } from 'zustand'
+import ErrorModal from '../../../components/modal/ErrorModal'
 
 
 
 export default function AddProduct() {
-  const hide = modalStore.getState().setHidden
+  const hide = useStore(modalStore, state => state.setHidden) 
   const navigate = useCallback(useNavigate(), [])
   const modalFnc = useCallback(() => {
     navigate('/')
@@ -23,6 +25,7 @@ export default function AddProduct() {
 
       <ProductForm />
       <InformModal truthyFnc={modalFnc} falsyFnc={modalFnc} />
+      <ErrorModal />
     </main>
   )
 }

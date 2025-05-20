@@ -1,6 +1,6 @@
 export enum BackendUrl {
     base = 'http://localhost:5000/',
-    cart = base + 'cart/',
+
     login = base + 'login/',
     signUp = base + 'sign-up/',
     createResetPassToken = base + 'create-reset-pass-token/',
@@ -9,6 +9,12 @@ export enum BackendUrl {
 
     products = 'products/',
     product = 'product/',
+
+    cart = base + 'cart/',
+    addToCart = base + 'add-to-cart/',
+
+    order = base + 'orders',
+    addOrder = base + 'add-order',
 
     admin = 'admin/',
     adminProducts = base + admin + products,

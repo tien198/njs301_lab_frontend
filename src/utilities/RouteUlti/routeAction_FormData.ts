@@ -3,14 +3,16 @@ import type { BackendUrl } from "../backendUrl";
 import type ErrorRes from "../../models/ErrorResponse";
 
 import { redirect } from "react-router-dom";
+import type Res from "../../models/Response";
 
 
 /**
- * @param {ActionFunctionArgs} args - 
- * @param {BackendUrl} backendAPI - 
- * @param {Function(resJson)} actionInDone - action-in-done
+ * @param args - 
+ * @param backendAPI - 
+ * @param actionInDone - action-in-done
+ * @param actionInFailed - action-in-failed
  */
-export default async function routerAction_FormData<T extends object>(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: ErrorRes<T>) => void) {
+export default async function routerAction_FormData<T extends object>(args: ActionFunctionArgs, backendAPI: BackendUrl, actionInDone?: (resJson: Res<T>) => void, actionInFailed?: (resJson: ErrorRes<T>) => void) {
     try {
         const res = await fetch(backendAPI, {
             method: args.request.method,
@@ -24,7 +26,7 @@ export default async function routerAction_FormData<T extends object>(args: Acti
             return actionInDone ? actionInDone(resJson) : redirect('/')
         }
         // this return errorRes object from the backend
-        return resJson
+        return actionInFailed ? actionInFailed(resJson) : resJson
 
     } catch (error: any) {
         // ErrorRes;

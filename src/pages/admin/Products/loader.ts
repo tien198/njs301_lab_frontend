@@ -1,11 +1,13 @@
+import type { IProduct } from "../../../models/interfaces/base/IProduct"
 import { BackendUrl } from "../../../utilities/backendUrl"
+import { routeLoader } from "../../../utilities/RouteUlti/routeLoader"
 
-export function loader() {
-    const prodsDefer = fetch(BackendUrl.adminProducts).then(res => res.json())
-        .catch(error => {
-            console.error(error)
-            return Promise.resolve([])
-        })
+export type ProdLoader = {
+    prodsDefer: Promise<IProduct[]>
+}
+
+export function loader(): ProdLoader {
+    const prodsDefer = routeLoader(BackendUrl.adminProducts)
     return {
         prodsDefer
     }

@@ -1,5 +1,5 @@
 import type { ActionFunctionArgs } from "react-router-dom";
-import type ErrorRes from "../../../models/ErrorResponse";
+import type Res from "../../../models/Response";
 
 
 
@@ -13,13 +13,11 @@ import modalStore from "../../../components/modal/store";
 export async function action(args: ActionFunctionArgs) {
 
     const showModal = modalStore.getState().show
-    const setError = modalStore.getState().setError
+    const setResponse = modalStore.getState().setResponse
 
-    const actionInDone = (resJson: ErrorRes) => {
-        setError({
+    const actionInDone = (resJson: Res) => {
+        setResponse({
             message: resJson.message,
-            name: '',
-            cause: resJson.cause
         })
         if (resJson.status && resJson.status < 400)
             showModal()

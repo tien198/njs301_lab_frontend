@@ -1,32 +1,40 @@
 import type { StoreApi } from 'zustand'
-import type { IErrorRes } from '../../../models/interfaces/response/error'
-import type { IRes } from '../../../models/interfaces/response'
+import type Res from '../../../models/Response'
+import type ErrorRes from '../../../models/ErrorResponse'
 
 import { createStore } from 'zustand'
 
 import modalStyle from '../Modal.module.css'
 
 
-
+type ModalType = 'inform' | 'error'
 // type Hidden = 'fading-hidden' | 'hidden' | ''
 interface IModalStore {
     hidden: string
     // response indicate whether successRes or errorRes
-    resonse: IRes & IErrorRes,
+    resonse: Res | ErrorRes,
+    // type define the modal should be rendered <InformModal> or <ErrorModal>
+    type: ModalType,
     show: () => void
     setHidden: (hiddenClass: string) => void
-    setError: (error: IErrorRes) => void
+    setResponse: (res: Res | ErrorRes) => void
+    setType: (type: ModalType) => void
 }
 const modalStore: StoreApi<IModalStore> = createStore(set => ({
     hidden: modalStyle['hidden'],
-    resonse: { message: '', name:'' },
+    resonse: { message: '', name: '' },
+    type: 'inform',
+
     show: () => set(state => ({ ...state, hidden: '' })),
     setHidden: (hiddenClass) => set(state => ({
         ...state, hidden: hiddenClass
     })),
-    setError: (error) => set(state => ({
-        ...state, resonse: error
-    }))
+    setResponse: (res) => set((state) => ({
+        ...state, resonse: res
+    })),
+    setType: (type) => set(state => ({
+        ...state, type: type
+    })),
 }))
 
 export default modalStore

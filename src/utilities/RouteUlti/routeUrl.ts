@@ -12,7 +12,10 @@ export enum shopRouteURL {
 
     admin = '/admin/',
     addProduct = 'add-product',
-    editProduct = 'edit-product'
+    editProduct = 'edit-product',
+
+    cart = 'cart',
+    order = 'order'
 }
 
 export enum shopRouteURL_Absolute {
@@ -23,12 +26,15 @@ export enum shopRouteURL_Absolute {
     resetPassword = base + shopRouteURL.authen + shopRouteURL.resetPassword,
     testCookie = base + shopRouteURL.authen + shopRouteURL.testCookie,
 
-    products= base+shopRouteURL.products,
-    product= base+shopRouteURL.product,
+    products = base + shopRouteURL.products,
+    product = base + shopRouteURL.product,
 
     admin = shopRouteURL.admin,
     adminProducts = admin + shopRouteURL.products,
     adminProduct = admin + shopRouteURL.product,
     addProduct = admin + shopRouteURL.addProduct,
-    editProduct = admin + shopRouteURL.editProduct
+    editProduct = admin + shopRouteURL.editProduct,
+
+    cart = base + shopRouteURL.cart,
+    order = base + shopRouteURL.order,
 }
