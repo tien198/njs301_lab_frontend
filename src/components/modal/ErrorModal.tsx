@@ -16,6 +16,9 @@ type props = {
 
 function fnc() {
     modalStore.setState({ hidden: modalStyle['fading-hidden'] })
+    setTimeout(() => {
+        modalStore.setState({ hidden: modalStyle['hidden'] })
+    }, 300);
 }
 
 export default function ErrorModal({ truthyFnc = fnc, falsyFnc = fnc }: props) {

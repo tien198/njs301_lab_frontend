@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import modalStore from "./store";
 import { FaXmark } from 'react-icons/fa6'
@@ -15,9 +15,13 @@ import { useStore } from "zustand";
 function Modal({ children }: PropsWithChildren) {
     const hidden = useStore(modalStore, state => state.hidden)
     const setHidden = useStore(modalStore, state => state.setHidden)
-    const hide = () => setHidden(style['fading-hidden'])
 
-
+    const hide = useCallback(() => {
+        setHidden(style['fading-hidden'])
+        setTimeout(() => {
+            setHidden(style['hidden'])
+        }, 300);
+    }, [setHidden])
     useEffect(() => {
         function handKeyDown(e: KeyboardEvent) {
             if (e.key === 'Escape')
@@ -28,7 +32,7 @@ function Modal({ children }: PropsWithChildren) {
 
         // cleanup
         return () => window.removeEventListener('keydown', handKeyDown)
-    }, [])
+    }, [hide])
 
     return createPortal(
         <div className={hidden}>
