@@ -6,7 +6,7 @@ import NavBar from '../components/layouts/NavBar';
 export default function ErrorPage() {
     const error = useRouteError() as ErrorRes
 
-    const message = error.name || 'No dectected Error'
+    const message = error.message || error.name || 'No dectected Error'
     const status = error.status || 500
     // Check if error.cause is an object and has keys
     const keys = Object.keys(error.cause || {})

@@ -1,29 +1,19 @@
+import type { IModalImplementProps } from "./ulties/IModalImplementProps"
 import type ErrorRes from "../../models/ErrorResponse"
 
 import { useStore } from "zustand"
 
-import modalStyle from './Modal.module.css'
 import informModalStyle from './InformModal.module.css'
 
 import Button from "../layouts/Button"
 import Modal from "./Modal"
 import modalStore from "./store"
-
-type props = {
-    truthyFnc?: () => void
-    falsyFnc?: () => void
-}
-
-function fnc() {
-    modalStore.setState({ hidden: modalStyle['fading-hidden'] })
-    setTimeout(() => {
-        modalStore.setState({ hidden: modalStyle['hidden'] })
-    }, 300);
-}
-
-export default function ErrorModal({ truthyFnc = fnc, falsyFnc = fnc }: props) {
+import defFnc from "./ulties/defaultButtonAction"
 
 
+
+
+export default function ErrorModal({ truthyFnc = defFnc, falsyFnc = defFnc, oncloseFnc }: IModalImplementProps) {
     const status = useStore(modalStore, state => state.resonse.status)
     const message = useStore(modalStore, state => state.resonse.message ?? (state.resonse as ErrorRes)?.name)
     const errors = useStore(modalStore, state => (state.resonse as ErrorRes)?.cause)
@@ -39,7 +29,7 @@ export default function ErrorModal({ truthyFnc = fnc, falsyFnc = fnc }: props) {
         return <></>
 
     return (
-        <Modal>
+        <Modal onCloseFnc={oncloseFnc}>
             <div className={informModalStyle["container"]}>
                 <span className={informModalStyle["status"]}>{status}</span>
                 <span>{message}</span>

@@ -11,34 +11,38 @@ import style from './Modal.module.css'
 import { useStore } from "zustand";
 
 
+interface props extends PropsWithChildren {
+    onCloseFnc?: () => void
+}
 
-function Modal({ children }: PropsWithChildren) {
+function Modal({ children, onCloseFnc }: props) {
     const hidden = useStore(modalStore, state => state.hidden)
     const setHidden = useStore(modalStore, state => state.setHidden)
 
-    const hide = useCallback(() => {
+    const closeModal = useCallback(() => {
+        onCloseFnc?.()
         setHidden(style['fading-hidden'])
         setTimeout(() => {
             setHidden(style['hidden'])
         }, 300);
-    }, [setHidden])
+    }, [setHidden, onCloseFnc])
     useEffect(() => {
         function handKeyDown(e: KeyboardEvent) {
             if (e.key === 'Escape')
-                hide()
+                closeModal()
         }
 
         window.addEventListener('keydown', handKeyDown)
 
         // cleanup
         return () => window.removeEventListener('keydown', handKeyDown)
-    }, [hide])
+    }, [closeModal])
 
     return createPortal(
         <div className={hidden}>
-            <div className={style['backdrop']} onClick={hide}></div>
+            <div className={style['backdrop']} onClick={closeModal}></div>
             <div className={style['modal']}>
-                <FaXmark onClick={hide} className={style['close-icon']} />
+                <FaXmark onClick={closeModal} className={style['close-icon']} />
                 {children}
             </div>
         </div>,

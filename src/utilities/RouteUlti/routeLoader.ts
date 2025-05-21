@@ -1,6 +1,6 @@
 
 export async function routeLoader(backendAPI: string) {
-
+    try {
         const res = await fetch(backendAPI, {
             credentials: 'include'
         })
@@ -8,4 +8,8 @@ export async function routeLoader(backendAPI: string) {
             throw await res.json()
 
         return res.json()
+    } catch {
+        return undefined
+    }
+
 }

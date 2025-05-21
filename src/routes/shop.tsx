@@ -38,6 +38,7 @@ const shopRoute: RouteObject = {
                 <Cart />
             </Suspense>,
             loader: () => import('../pages/shop/Cart/loader').then(i => i.loader()),
+            action: (args) => import('../pages/shop/Cart/action').then(i => i.action(args))
         },
         {
             path: shopRouteURL.order,
