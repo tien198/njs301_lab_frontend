@@ -21,14 +21,16 @@ const shopRoute: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            loader: () => import('../pages/shop/Product/loader').then(i => i.loader())
+            loader: () => import('../pages/shop/Product/loader').then(i => i.loader()),
+            action: (args) => import('../pages/shop/AddToCart/action').then(i => i.action(args))
         },
         {
             path: shopRouteURL.products,
             element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            loader: () => import('../pages/shop/Product/loader').then(i => i.loader())
+            loader: () => import('../pages/shop/Product/loader').then(i => i.loader()),
+            action: (args) => import('../pages/shop/AddToCart/action').then(i => i.action(args))
         },
         {
             path: shopRouteURL.cart,
@@ -36,7 +38,6 @@ const shopRoute: RouteObject = {
                 <Cart />
             </Suspense>,
             loader: () => import('../pages/shop/Cart/loader').then(i => i.loader()),
-            action: (arg) => import('../pages/shop/AddToCart/action').then(i => i.action(arg))
         },
         {
             path: shopRouteURL.order,

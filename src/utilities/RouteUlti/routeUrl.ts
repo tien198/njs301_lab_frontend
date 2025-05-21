@@ -15,6 +15,7 @@ export enum shopRouteURL {
     editProduct = 'edit-product',
 
     cart = 'cart',
+    addTotCart = 'add-to-cart',
     order = 'order'
 }
 
@@ -36,5 +37,6 @@ export enum shopRouteURL_Absolute {
     editProduct = admin + shopRouteURL.editProduct,
 
     cart = base + shopRouteURL.cart,
+    addTotCart = base + shopRouteURL.addTotCart,
     order = base + shopRouteURL.order,
 }

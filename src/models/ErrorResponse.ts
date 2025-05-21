@@ -2,7 +2,7 @@ import type { IRes } from "./interfaces/response";
 
 
 
-export default class ErrorRes<T extends object = object> extends Error implements IRes {
+export default class ErrorRes<T extends object = Record<string,any>> extends Error implements IRes {
     constructor(
         message: string,
         public status?: number,

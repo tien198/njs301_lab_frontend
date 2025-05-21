@@ -1,6 +1,7 @@
+import type { IProduct } from "./IProduct"
 
 export interface ICartItem {
-    product: string
+    product: IProduct
     quantity: number
 }
 

@@ -1,31 +1,43 @@
+import { Await, useLoaderData } from 'react-router-dom';
+import type { CartLoader } from './loader';
+import { Suspense } from 'react';
+import { Fallback } from '../../../components/Fallback';
+
+import styles from './cart.module.css';
+import { BackendUrl } from '../../../utilities/backendUrl';
+
 
 export default function Cart() {
-    return (
-        <main>
-            {/* {(products.length > 0) ?
-                <>
-                    <ul className="cart__item-list">
-                        {products.map(p =>
-                            <li className="cart__item">
-                                <h1>{p.productId.title}</h1>
-                                <h2>Quantity: {p.quantity}</h2>
-                                <form action="/cart-delete-item" method="POST">
-                                    <input type="hidden" value={p.productId._id} name="productId"/>
-                                        <button className="btn danger" type="submit">Delete</button>
-                                </form>
-                            </li>
-                        )}
-                    </ul>
-                    <div className="centered">
-                        <form action="/create-order" method="post">
-                            <button className="btn">Order Now!</button>
-                        </form>
-                    </div>
-                </>
-                :
-                <h1>No Products in Cart!</h1>
-            } */}
-        </main>
-    )
-}
+    const { cartDefer } = useLoaderData<CartLoader>()
 
+    const handleOrder = () => { }
+    return (
+        <>
+            <div className={styles.cartContainer}>
+                <Suspense fallback={<Fallback />}>
+                    <Await resolve={cartDefer}>{cart =>
+                        <>
+                            {cart.items.map((item) => (
+                                <div key={item.product._id} className={styles.cartItem}>
+                                    <img src={BackendUrl.base + item.product.imageUrl} alt={item.product.title} className={styles.image} />
+                                    <div className={styles.details}>
+                                        <div className={styles.title}>{item.product.title}</div>
+                                        <div className={styles.description}>{item.product.description}</div>
+                                        <div className={styles.priceQuantity}>
+                                            Price: ${item.product.price} | Quantity: {item.quantity}
+                                        </div>
+                                    </div>
+                                    <div><span className={styles['italic']}>Subtotal</span>: ${+item.product.price * +item.quantity}</div>
+                                </div>
+                            ))}
+                            <div className={styles.total}>Total: ${cart.total}</div>
+                        </>
+                    }</Await>
+                </Suspense>
+                <button className={styles['orderButton']} onClick={handleOrder}>
+                    Order
+                </button>
+            </div>
+        </>
+    );
+}

@@ -1,11 +1,14 @@
+import type { ProdLoader } from './loader'
+
 import { Await, useLoaderData } from 'react-router-dom'
 import Product from '../../../models/Product'
 import ProductComponent from '../../../components/Product'
 import { Suspense } from 'react'
 import { Fallback } from '../../../components/Fallback'
+import ErrorModal from '../../../components/modal/ErrorModal'
 
 export default function ProductPage() {
-  const { prodsDefer } = useLoaderData()
+  const { prodsDefer } = useLoaderData<ProdLoader>()
   return (
     <main>
       <Suspense fallback={<Fallback />}>
@@ -24,6 +27,8 @@ export default function ProductPage() {
         }
         </Await>
       </Suspense>
+      
+      <ErrorModal />
     </main>
   )
 }

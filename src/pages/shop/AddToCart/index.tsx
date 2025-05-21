@@ -1,5 +1,4 @@
 import { Form } from "react-router-dom"
-import ErrorModal from "../../../components/modal/ErrorModal"
 
 type Props = {
     prodId: string,
@@ -9,12 +8,11 @@ type Props = {
 export default function AddToCart({ prodId, price }: Props) {
     return (
         <>
-            <Form action="/cart" method="post">
+            <Form method="post">
                 <button className="btn">Add to cart</button>
                 <input type="hidden" name="prodId" value={prodId} />
                 <input type="hidden" name="price" value={price} />
             </Form>
-            <ErrorModal />
         </>
     )
 }
