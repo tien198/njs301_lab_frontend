@@ -16,6 +16,9 @@ export enum BackendUrl {
     order = base + 'orders',
     addOrder = base + 'add-order',
 
+    getInvoice = base + 'get-invoice',
+
+
     admin = 'admin/',
     adminProducts = base + admin + products,
     adminProduct = base + admin + product,

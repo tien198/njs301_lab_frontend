@@ -1,4 +1,4 @@
-import { Await, Link, useLoaderData } from "react-router-dom"
+import { Await, useLoaderData } from "react-router-dom"
 import OrderItem from "./comps/OrderItem"
 
 import styles from "./order.module.css"
@@ -7,7 +7,7 @@ import styles from "./order.module.css"
 import type { OrderLoader } from "./loader"
 import { Suspense } from "react"
 import { Fallback } from "../../../components/Fallback"
-import { shopRouteURL_Absolute } from "../../../utilities/RouteUlti/routeUrl"
+import { BackendUrl } from "../../../utilities/backendUrl"
 
 
 
@@ -22,12 +22,16 @@ export default function OrderList() {
                             <h3>Order ID: {String(ord._id)}</h3>
                             <div className={styles['order-items']}>
                                 {ord.items.map((item, i) => (
-                                    <Link key={i} to={shopRouteURL_Absolute.product + '/' + item.product._id}>
-                                        <OrderItem item={item} />
-                                    </Link>
+                                    <OrderItem item={item} key={i} />
                                 ))}
                             </div>
-                            <p className={styles['total']}>Total: $ {ord.total}</p>
+                            <div className={styles['order-item']}>
+                                <p className={styles['total']}>Total: $ {ord.total}</p>
+                                <form action={BackendUrl.getInvoice} method="post">
+                                    <input type="hidden" name="orderId" value={ord._id} />
+                                    <button type="submit" className={styles['submit-btn']}>Get Invoice</button>
+                                </form>
+                            </div>
                         </div>)
                         : <p>No Products Found!</p>
                 }</Await>
