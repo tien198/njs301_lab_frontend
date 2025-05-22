@@ -13,25 +13,24 @@ import ErrorModal from '../../../components/modal/ErrorModal';
 export default function Cart() {
     const { cartDefer } = useLoaderData<CartLoader>()
 
-    const handleOrder = () => { }
     return (
         <>
-            <div className={styles['cartContainer']}>
+            <div className={styles['cart-container']}>
                 <Suspense fallback={<Fallback />}>
                     <Await resolve={cartDefer}>{cart =>
                         cart && cart.items.length > 0
                             ? <>
                                 {cart.items.map((item) => (
-                                    <div key={item.product._id} className={styles['cartItem']}>
-                                        <img src={BackendUrl.base + item.product.imageUrl} alt={item.product.title} className={styles['image']} />
+                                    <div key={item.productRef._id} className={styles['cart-item']}>
+                                        <img src={BackendUrl.base + item.productRef.imageUrl} alt={item.productRef.title} className={styles['image']} />
                                         <div className={styles['details']}>
-                                            <div className={styles['title']}>{item.product.title}</div>
-                                            <div className={styles['description']}>{item.product.description}</div>
-                                            <div className={styles['priceQuantity']}>
-                                                Price: ${item.product.price} | Quantity: {item.quantity}
+                                            <div className={styles['title']}>{item.productRef.title}</div>
+                                            <div className={styles['description']}>{item.productRef.description}</div>
+                                            <div className={styles['price-quantity']}>
+                                                Price: ${item.productRef.price} | Quantity: {item.quantity}
                                             </div>
                                         </div>
-                                        <div><span className={styles['italic']}>Subtotal</span>: ${+item.product.price * +item.quantity}</div>
+                                        <div><span className={styles['italic']}>Subtotal</span>: ${+item.productRef.price * +item.quantity}</div>
                                     </div>
                                 ))}
                                 <div className={styles['total']}>Total: ${cart.total}</div>
@@ -40,7 +39,7 @@ export default function Cart() {
                     }</Await>
                 </Suspense>
                 <Form method='post' className={styles['order-form']}>
-                    <button className={styles['order-button']} onClick={handleOrder}>
+                    <button className={styles['order-button']} >
                         Order
                     </button>
                 </Form>

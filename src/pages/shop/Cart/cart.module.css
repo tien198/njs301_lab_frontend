@@ -1,5 +1,5 @@
 /* Cart.module.css */
-.cartContainer {
+.cart-container {
     border: 1px solid #ddd;
     padding: 16px;
     border-radius: 8px;
@@ -9,7 +9,7 @@
     flex-direction: column;
 }
 
-.cartItem {
+.cart-item {
     display: flex;
     gap: 16px;
     border-bottom: 1px solid #eee;
@@ -39,7 +39,7 @@
     margin-bottom: 4px;
 }
 
-.priceQuantity {
+.price-quantity {
     font-size: 0.9rem;
     color: #333;
 }

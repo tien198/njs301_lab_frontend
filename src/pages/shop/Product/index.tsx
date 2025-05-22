@@ -22,12 +22,12 @@ export default function ProductPage() {
                 )
               }
             </div>
-            : <h1>No Products Found!</h1>
+            : <p>No Products Found!</p>
 
         }
         </Await>
       </Suspense>
-      
+
       <ErrorModal />
     </main>
   )

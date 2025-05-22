@@ -29,7 +29,7 @@ export async function action(args: ActionFunctionArgs) {
     const actionInFailed = (resJson: ErrorRes) => {
         setType('error')
         setResponse({
-            message: resJson.name,
+            message: resJson.message,
             status: resJson.status,
             cause: resJson.cause
         })
