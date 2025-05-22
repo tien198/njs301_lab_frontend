@@ -7,8 +7,8 @@ export enum BackendUrl {
     resetPass = base + 'reset-pass/',
     testCookie = base + 'test-cookie/',
 
-    products = 'products/',
-    product = 'product/',
+    products = base + 'products/',
+    product = base + 'product/',
 
     cart = base + 'cart/',
     addToCart = base + 'add-to-cart/',

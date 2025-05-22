@@ -1,17 +1,19 @@
+import type { LoaderFunctionArgs } from "react-router-dom"
 import type { IProduct } from "../../../models/interfaces/base/IProduct"
 import { BackendUrl } from "../../../utilities/backendUrl"
 
 export type ProdLoader = {
-    prodsDefer: Promise<IProduct[]>
+    prodDefer: Promise<IProduct>
 }
 
-export function loader(): ProdLoader {
-    const prodsDefer = fetch(BackendUrl.base).then(res => res.json())
+export function loader(args: LoaderFunctionArgs): ProdLoader {
+    const prodId = args.params['prodId']
+    const prodDefer = fetch(BackendUrl.product + prodId).then(res => res.json())
         .catch(error => {
             console.error(error)
             return Promise.resolve([])
         })
     return {
-        prodsDefer
+        prodDefer
     }
 }

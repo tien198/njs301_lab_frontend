@@ -6,6 +6,7 @@ import { Fallback } from "../components/Fallback"
 import { Outlet } from "react-router-dom"
 import { shopRouteURL } from "../utilities/RouteUlti/routeUrl"
 
+const ProductsList = lazy(() => import('../pages/shop/Products'))
 const Product = lazy(() => import('../pages/shop/Product'))
 const Cart = lazy(() => import('../pages/shop/Cart'))
 const Order = lazy(() => import('../pages/shop/Order'))
@@ -19,18 +20,25 @@ const shopRoute: RouteObject = {
         {
             index: true,
             element: <Suspense fallback={<Fallback />}>
-                <Product />
+                <ProductsList />
             </Suspense>,
-            loader: () => import('../pages/shop/Product/loader').then(i => i.loader()),
+            loader: () => import('../pages/shop/Products/loader').then(i => i.loader()),
             action: (args) => import('../pages/shop/AddToCart/action').then(i => i.action(args))
         },
         {
             path: shopRouteURL.products,
             element: <Suspense fallback={<Fallback />}>
+                <ProductsList />
+            </Suspense>,
+            loader: () => import('../pages/shop/Products/loader').then(i => i.loader()),
+            action: (args) => import('../pages/shop/AddToCart/action').then(i => i.action(args))
+        },
+        {
+            path: shopRouteURL.product+'/:prodId',
+            element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            loader: () => import('../pages/shop/Product/loader').then(i => i.loader()),
-            action: (args) => import('../pages/shop/AddToCart/action').then(i => i.action(args))
+            loader: (args) => import('../pages/shop/Product/loader').then(i => i.loader(args)),
         },
         {
             path: shopRouteURL.cart,

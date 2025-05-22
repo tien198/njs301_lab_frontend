@@ -8,17 +8,21 @@ import { Fallback } from '../../../components/Fallback'
 import ErrorModal from '../../../components/modal/ErrorModal'
 
 export default function ProductPage() {
-  const { prodDefer } = useLoaderData<ProdLoader>()
+  const { prodsDefer } = useLoaderData<ProdLoader>()
   return (
     <main>
       <Suspense fallback={<Fallback />}>
-        <Await resolve={prodDefer}>{(prod: Product) =>
+        <Await resolve={prodsDefer}>{(products: Product[]) =>
 
-          (prod) ?
-            <div >
-              <ProductComponent product={prod} key={prod.title} />
+          (products && products.length > 0) ?
+            <div className="grid">
+              {
+                products.map(product =>
+                  <ProductComponent product={product} key={product.title} />
+                )
+              }
             </div>
-            : <p>No Prod Found!</p>
+            : <p>No Products Found!</p>
 
         }
         </Await>
