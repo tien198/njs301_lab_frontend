@@ -20,8 +20,8 @@ export enum BackendUrl {
 
 
     admin = 'admin/',
-    adminProducts = base + admin + products,
-    adminProduct = base + admin + product,
+    adminProducts = base + admin + 'products',
+    adminProduct = base + admin + 'product',
     addProduct = base + admin + 'add-product/',
     editProduct = base + admin + 'edit-product/',
     deleteProduct = base + admin + 'delete-product/',

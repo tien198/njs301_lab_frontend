@@ -15,7 +15,7 @@ export default function Button({ value, children, type, className, onClick, isBg
         <button
             type={type}
             onClick={onClick}
-            className={className ?? btnStyle['btn'] + ' ' + bg}
+            className={className ?? 'btn' + ' ' + bg}
         >
             {value ?? children ?? 'send'}
         </button>

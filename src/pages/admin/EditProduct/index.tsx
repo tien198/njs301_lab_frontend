@@ -1,6 +1,6 @@
 import { Suspense, useCallback } from 'react'
 import { Await, useLoaderData, useNavigate } from 'react-router-dom'
-import type { Loader } from './loader'
+import type { EditLoader } from './loader'
 
 import modalStyle from '../../../components/modal/Modal.module.css'
 
@@ -12,8 +12,8 @@ import { useStore } from 'zustand'
 
 
 export default function EditProduct() {
-  const loader: Loader = useLoaderData()
-  const hide = useStore(modalStore, state => state.setHidden) 
+  const loader: EditLoader = useLoaderData()
+  const hide = useStore(modalStore, state => state.setHidden)
 
   const navigate = useCallback(useNavigate(), [])
   const modalFnc = useCallback(() => {

@@ -1,14 +1,29 @@
 import type { IProduct } from '../../../models/interfaces/base/IProduct'
 
-import { Await, Link, useLoaderData } from 'react-router-dom'
+import { Await, useLoaderData, useNavigate, useSubmit } from 'react-router-dom'
 import ProductComponent from '../../../components/Product'
 import { Suspense } from 'react'
 import { Fallback } from '../../../components/Fallback'
 import { shopRouteURL_Absolute } from '../../../utilities/RouteUlti/routeUrl'
 import type { ProdLoader } from './loader'
+import Button from '../../../components/layouts/Button'
 
 export default function ProductPage() {
   const { prodsDefer }: ProdLoader = useLoaderData()
+
+  const navigate = useNavigate()
+  const submit = useSubmit()
+
+  function handleSubmit(prodId: string) {
+    const formData = new FormData()
+    formData.append('prodId', prodId)
+    submit(formData, {
+      method: 'post',
+      encType: 'application/x-www-form-urlencoded',
+    })
+  }
+
+
   return (
     <main>
       <h1>Products</h1>
@@ -19,9 +34,12 @@ export default function ProductPage() {
             <div className="grid">
               {
                 products.map(prod =>
-                  <Link to={shopRouteURL_Absolute.editProduct + '/' + prod._id} className='product-link'>
-                    <ProductComponent isAdmin product={prod} key={prod.title} />
-                  </Link>
+                  <ProductComponent product={prod} key={prod.title} >
+                    <Button isBgWhite onClick={() => navigate(shopRouteURL_Absolute.editProduct + '/' + prod._id)}>
+                      Edit
+                    </Button>
+                    <Button onClick={handleSubmit.bind(null, prod._id)}>Delete</Button>
+                  </ProductComponent>
                 )
               }
             </div>

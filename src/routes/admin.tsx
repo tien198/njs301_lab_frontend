@@ -22,7 +22,8 @@ const adminRoute: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <Product />
             </Suspense>,
-            loader: () => import('../pages/admin/Products/loader').then(i => i.loader())
+            loader: () => import('../pages/admin/Products/loader').then(i => i.loader()),
+            action: (args) => import('../pages/admin/Products/action').then(i => i.deleteProdAction(args)),
         },
         {
             path: shopRouteURL.addProduct,

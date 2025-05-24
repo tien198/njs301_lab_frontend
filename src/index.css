@@ -84,13 +84,13 @@ main {
 }
 
 .card__actions {
-    padding: 1rem;
-    text-align: center;
+  padding: 1rem;
+  text-align: center;
 }
 
 .card__actions button,
 .card__actions a {
-    margin: 0 0.25rem;
+  margin: 0 0.25rem;
 }
 
 .btn {
@@ -100,6 +100,8 @@ main {
   background: white;
   border-radius: 3px;
   cursor: pointer;
+  text-decoration: none;
+  padding: .5rem 2rem;
 }
 
 .btn:hover,
@@ -108,7 +110,7 @@ main {
   color: white;
 }
 
-.product-link{
+.product-link {
   color: rgb(19, 13, 13);
   text-decoration: none;
 }

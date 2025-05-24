@@ -6,6 +6,7 @@ export default class Product implements IProduct {
         public imageUrl: string,
         public description: string,
         public price: number,
-        public _id: string
+        public _id: string,
+        public userRef: string
     ) { }
 }

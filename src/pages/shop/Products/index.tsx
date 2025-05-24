@@ -6,6 +6,7 @@ import ProductComponent from '../../../components/Product'
 import { Suspense } from 'react'
 import { Fallback } from '../../../components/Fallback'
 import ErrorModal from '../../../components/modal/ErrorModal'
+import AddToCart from '../AddToCart'
 
 export default function ProductPage() {
   const { prodsDefer } = useLoaderData<ProdLoader>()
@@ -18,7 +19,9 @@ export default function ProductPage() {
             <div className="grid">
               {
                 products.map(product =>
-                  <ProductComponent product={product} key={product.title} />
+                  <ProductComponent product={product} key={product.title}>
+                    <AddToCart prodId={product._id} price={product.price} />
+                  </ProductComponent>
                 )
               }
             </div>

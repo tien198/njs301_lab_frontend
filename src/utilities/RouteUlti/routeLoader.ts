@@ -7,7 +7,7 @@ export async function routeLoader(backendAPI: string) {
         if (!res.ok)
             throw await res.json()
 
-        return res.json()
+        return await res.json()
     } catch {
         return undefined
     }

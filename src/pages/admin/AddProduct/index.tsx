@@ -13,12 +13,12 @@ import ErrorModal from '../../../components/modal/ErrorModal'
 
 
 export default function AddProduct() {
-  const hide = useStore(modalStore, state => state.setHidden) 
+  const hide = useStore(modalStore, state => state.setHidden)
   const navigate = useCallback(useNavigate(), [])
   const modalFnc = useCallback(() => {
     navigate('/')
     hide(modalStyle['hidden'])
-  }, [])
+  }, [hide])
 
   return (
     <main>
