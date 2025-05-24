@@ -12,7 +12,7 @@ type props = {
 export default function OrderItem({ item }: props) {
     return (
         <div className={styles['order-item']}>
-        <Link to={shopRouteURL_Absolute.product + '/' + item.product._id}>
+        <Link to={shopRouteURL_Absolute.product + '/' + item.product?._id}>
             <div className={styles['order-item']}>
 
                 <img src={BackendUrl.base + item.product?.imageUrl} alt={item.product?.title} />

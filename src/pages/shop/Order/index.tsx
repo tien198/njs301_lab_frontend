@@ -18,21 +18,22 @@ export default function OrderList() {
             <Suspense fallback={<Fallback />}>
                 <Await resolve={ordersDefer}>{orders =>
                     orders && orders.length > 0
-                        ? orders.map(ord => <div className={styles['order-card']}>
-                            <h3>Order ID: {String(ord._id)}</h3>
-                            <div className={styles['order-items']}>
-                                {ord.items.map((item, i) => (
-                                    <OrderItem item={item} key={i} />
-                                ))}
-                            </div>
-                            <div className={styles['order-item']}>
-                                <p className={styles['total']}>Total: $ {ord.total}</p>
-                                <form action={BackendUrl.getInvoice} method="post">
-                                    <input type="hidden" name="orderId" value={ord._id} />
-                                    <button type="submit" className={styles['submit-btn']}>Get Invoice</button>
-                                </form>
-                            </div>
-                        </div>)
+                        ? orders.map(ord =>
+                            <div className={styles['order-card']}>
+                                <h3>Order ID: {String(ord._id)}</h3>
+                                <div className={styles['order-items']}>
+                                    {ord.items.map((item, i) => (
+                                        <OrderItem item={item} key={i} />
+                                    ))}
+                                </div>
+                                <div className={styles['order-item']}>
+                                    <p className={styles['total']}>Total: $ {ord.total}</p>
+                                    <form action={BackendUrl.getInvoice} method="post">
+                                        <input type="hidden" name="orderId" value={ord._id} />
+                                        <button type="submit" className={styles['submit-btn']}>Get Invoice</button>
+                                    </form>
+                                </div>
+                            </div>)
                         : <p>No Products Found!</p>
                 }</Await>
             </Suspense>
