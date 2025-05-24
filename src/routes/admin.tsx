@@ -23,7 +23,7 @@ const adminRoute: RouteObject = {
                 <Product />
             </Suspense>,
             loader: () => import('../pages/admin/Products/loader').then(i => i.loader()),
-            action: (args) => import('../pages/admin/Products/action').then(i => i.deleteProdAction(args)),
+            action: (args) => import('../pages/admin/Products/deleteProdAction').then(i => i.deleteProdAction(args)),
         },
         {
             path: shopRouteURL.addProduct,

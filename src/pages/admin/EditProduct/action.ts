@@ -1,7 +1,6 @@
 import type { ActionFunctionArgs } from "react-router-dom";
 
 import type Res from "../../../models/Response";
-import type ErrorRes from "../../../models/ErrorResponse";
 
 
 import routeAction_FormData from "../../../utilities/RouteUlti/routeAction_FormData"
@@ -26,16 +25,5 @@ export async function action(args: ActionFunctionArgs) {
             showModal()
     }
 
-    const actionInFailed = (resJson: ErrorRes) => {
-        setType('error')
-        setResponse({
-            message: resJson.name,
-            status: resJson.status,
-            cause: resJson.cause
-        })
-
-        showModal()
-    }
-
-    return await routeAction_FormData(args, BackendUrl.editProduct, actionInDone, actionInFailed)
+        return await routeAction_FormData(args, BackendUrl.editProduct, actionInDone)
 }

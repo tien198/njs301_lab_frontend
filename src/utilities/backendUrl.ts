@@ -2,6 +2,7 @@ export enum BackendUrl {
     base = 'http://localhost:5000/',
 
     login = base + 'login/',
+    logout = base + 'logout/',
     signUp = base + 'sign-up/',
     createResetPassToken = base + 'create-reset-pass-token/',
     resetPass = base + 'reset-pass/',

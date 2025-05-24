@@ -43,6 +43,10 @@ const authRoute: RouteObject = {
             action: args => import('../pages/auth/ResetPassword/action').then(i => i.action(args))
         },
         {
+            path: shopRouteURL.logout,
+            action: args=> import('../pages/auth/logout/action').then(i => i.logoutAction(args)),
+        },
+        {
             path: shopRouteURL.testCookie,
             element: <></>,
             loader: () => import('../pages/auth/TestCookies').then(i => i.loader()),

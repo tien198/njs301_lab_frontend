@@ -9,6 +9,8 @@ import InformModal from '../../../components/modal/InformModal'
 import modalStore from '../../../components/modal/store'
 import { Fallback } from '../../../components/Fallback'
 import { useStore } from 'zustand'
+import { shopRouteURL_Absolute } from '../../../utilities/RouteUlti/routeUrl'
+import ErrorModal from '../../../components/modal/ErrorModal'
 
 
 export default function EditProduct() {
@@ -17,7 +19,7 @@ export default function EditProduct() {
 
   const navigate = useCallback(useNavigate(), [])
   const modalFnc = useCallback(() => {
-    navigate('/')
+    navigate(shopRouteURL_Absolute.adminProducts)
     hide(modalStyle['hidden'])
   }, [])
 
@@ -28,6 +30,7 @@ export default function EditProduct() {
           <ProductForm isEditing product={prod} />
         }</Await>
       </Suspense>
+      <ErrorModal />
       <InformModal truthyFnc={modalFnc} falsyFnc={modalFnc} />
     </main>
   )
